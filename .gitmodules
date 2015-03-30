@@ -1,0 +1,3 @@
+[submodule "necpp"]
+	path = necpp
+	url = git@github.com:tmolteno/necpp
