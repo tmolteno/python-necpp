@@ -14,7 +14,7 @@ nec_sources.extend([fn for fn in glob('necpp_src/src/*.cpp')
          if not os.path.basename(fn).startswith('net_solve.cpp')
          if not os.path.basename(fn).startswith('nec2cpp.cpp')
          if not os.path.basename(fn).startswith('necDiff.cpp')])
-nec_sources.extend(glob("necpp_wrap.c"))
+#nec_sources.extend(glob("necpp_wrap.c"))
 
 nec_headers = []
 nec_headers.extend(glob("necpp_src/src/*.h"))

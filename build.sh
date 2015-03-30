@@ -1,7 +1,9 @@
 #!/bin/sh
 # Script to build the nec2++ python module.
-#cd necpp_src; make -f Makefile.git
-cd necpp_src; ./configure --without-lapack
+pushd necpp_src
+make -f Makefile.git
+./configure --without-lapack
+popd
 PYTHON=python
 swig -v -Inecpp_src/src/ -python necpp.i
 python setup.py build
