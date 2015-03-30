@@ -1,4 +1,5 @@
 include README.md
+include LICENCE.txt
 
 include necpp_src/src/*.h
 
