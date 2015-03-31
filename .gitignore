@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 
 MANIFEST
+README.txt
 
 # C extensions
 *.so

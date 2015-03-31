@@ -1,13 +1,9 @@
-# python-necpp: Antenna simulation in python
-
-PyPI module for nec2++
+# #python-necpp: Antenna simulation in python
 
 This module allows you to do antenna simulations in Python using the nec2++ antenna
 simulation package. This is a wrapper using SWIG of the C interface, so the syntax
 is quite simple. Have a look at the file test.py, for an example of how this 
 library can be used.
-
-### Author
 
 Tim Molteno. tim@physics.otago.ac.nz
 
@@ -20,10 +16,9 @@ follows:
 
 ## Using
 
-    #
-    #  Simple vertical monopole antenna simulation using python-necpp
-    #  pip install necpp
-    #
+The following code calculates the impedance of a simple vertical monopole antenna
+over a perfect ground. 
+
     import necpp
 
     def handle_nec(result):
@@ -37,11 +32,12 @@ follows:
       handle_nec(necpp.nec_geometry_complete(nec, 1, 0))
       handle_nec(necpp.nec_gn_card(nec, 1, 0, 0, 0, 0, 0, 0, 0))
       handle_nec(necpp.nec_fr_card(nec, 0, 1, frequency, 0))
-      handle_nec(necpp.nec_ex_card(nec, 0, 0, 1, 0, 1.0, 0, 0, 0, 0, 0)) # Voltage excitation in segment 1
+      handle_nec(necpp.nec_ex_card(nec, 0, 0, 1, 0, 1.0, 0, 0, 0, 0, 0)) 
       handle_nec(necpp.nec_rp_card(nec, 0, 90, 1, 0,5,0,0, 0, 90, 1, 0, 0, 0))
       result_index = 0
       
-      z = complex(necpp.nec_impedance_real(nec,result_index), necpp.nec_impedance_imag(nec,result_index))
+      z = complex(necpp.nec_impedance_real(nec,result_index), 
+                  necpp.nec_impedance_imag(nec,result_index))
       
       necpp.nec_delete(nec)
       return z
@@ -52,4 +48,4 @@ follows:
 
 ## More Information
       
-Have a look at [http://github.com/tmolteno/necpp] for more information on nec2++.
+Have a look at [http://github.com/tmolteno/necpp] for more information on using nec2++.

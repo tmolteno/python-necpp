@@ -23,11 +23,17 @@ This is included as a git submodule
     
     cd necpp; make -f Makefile.git; ./configure --without-lapack
 
+### Converting from MarkDown
+
+    sudo aptitude install pandoc swig
+
+### Testing
+
 Then you can do the usual
 
-    python setup.py sdist
+    ./build.sh
 
-This will build a source distribution tarball
+This will run SWIG a source distribution tarball
 
 ### Uploading to PyPI.
 
