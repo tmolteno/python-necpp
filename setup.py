@@ -8,13 +8,13 @@ from distutils.core import setup, Extension
 from glob import glob
 import os
 
-nec_sources = ['necpp.i']
+nec_sources = []
 nec_sources.extend([fn for fn in glob('necpp_src/src/*.cpp') 
          if not os.path.basename(fn).endswith('_tb.cpp')
          if not os.path.basename(fn).startswith('net_solve.cpp')
          if not os.path.basename(fn).startswith('nec2cpp.cpp')
          if not os.path.basename(fn).startswith('necDiff.cpp')])
-#nec_sources.extend(glob("necpp_wrap.c"))
+nec_sources.extend(glob("necpp_wrap.c"))
 
 nec_headers = []
 nec_headers.extend(glob("necpp_src/src/*.h"))
@@ -26,7 +26,7 @@ nec_headers.extend(glob("necpp_src/config.h"))
 #
 necpp_module = Extension('_necpp',
     sources=nec_sources,
-    swig_opts=['-v', '-Inecpp_src/src/', '-dhtml'],
+#    swig_opts=['-v', '-Inecpp_src/src/', '-dhtml'],
     include_dirs=['necpp_src/src/', 'necpp_src/'],
     depends=nec_headers,
     define_macros=[('BUILD_PYTHON', '1')]
@@ -42,7 +42,7 @@ necpp_module = Extension('_necpp',
 
 
 setup (name = 'necpp',
-       version = '1.6.1.1',
+       version = '1.6.1.2',
        author  = "Tim Molteno",
        author_email  = "tim@physics.otago.ac.nz",
        url  = "http://github.com/tmolteno/necpp",
