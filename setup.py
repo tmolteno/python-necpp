@@ -42,7 +42,7 @@ necpp_module = Extension('_necpp',
 
 
 setup (name = 'necpp',
-       version = '1.6.1.3',
+       version = '1.6.1.4',
        author  = "Tim Molteno",
        author_email  = "tim@physics.otago.ac.nz",
        url  = "http://github.com/tmolteno/necpp",
