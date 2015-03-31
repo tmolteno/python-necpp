@@ -42,12 +42,19 @@ necpp_module = Extension('_necpp',
 
 
 setup (name = 'necpp',
-       version = '1.6.1.2',
+       version = '1.6.1.3',
        author  = "Tim Molteno",
        author_email  = "tim@physics.otago.ac.nz",
        url  = "http://github.com/tmolteno/necpp",
+       keywords = "nec2 nec2++ antenna electromagnetism radio",
        description = "Python Antenna Simulation Module (nec2++) C-style interface",
        ext_modules = [necpp_module],
        py_modules = ["necpp"],
-       license='GPLv2'
+       license='GPLv2',
+       classifiers=[
+          "Development Status :: 5 - Production/Stable",
+          "Topic :: Scientific/Engineering",
+          "Topic :: Communications :: Ham Radio",
+          "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+          "Intended Audience :: Science/Research"]
        )
