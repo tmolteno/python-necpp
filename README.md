@@ -13,6 +13,9 @@ Tim Molteno. tim@physics.otago.ac.nz
 
 ## Install
 
+As of version 1.6.1.2 swig is no longer required for installation. Simply use PIP as 
+follows:
+
     pip install necpp
 
 ## Using
