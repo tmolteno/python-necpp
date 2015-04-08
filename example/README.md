@@ -18,4 +18,6 @@ The file monopole.py shows how to model a simple vertical whip antenna.
     
 will print the impedance
 
-    Impedance z0=0.50, height=4.00 : ( 134.0,-461.5I) Ohms
+    Impedance at base_height=0.50, length=4.00 : ( 134.0,-461.5I) Ohms
+    
+## Automatically tuning the monopole

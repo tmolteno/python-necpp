@@ -8,10 +8,10 @@ def handle_nec(result):
   if (result != 0):
     print necpp.nec_error_message()
 
-def impedance(frequency, z0, height):
+def impedance(frequency, base_height, length):
   
   nec = necpp.nec_create()
-  handle_nec(necpp.nec_wire(nec, 1, 17, 0, 0, z0, 0, 0, z0+height, 0.1, 1, 1))
+  handle_nec(necpp.nec_wire(nec, 1, 17, 0, 0, base_height, 0, 0, base_height+length, 0.1, 1, 1))
   handle_nec(necpp.nec_geometry_complete(nec, 1, 0))
   handle_nec(necpp.nec_gn_card(nec, 1, 0, 0, 0, 0, 0, 0, 0)) # Perfect Ground
   handle_nec(necpp.nec_fr_card(nec, 0, 1, frequency, 0))
@@ -25,5 +25,5 @@ def impedance(frequency, z0, height):
   return z
 
 if (__name__ == '__main__'):
-  z = impedance(frequency = 34.5, z0 = 0.5, height = 4.0)
-  print "Impedance z0=%0.2f, height=%0.2f : (%6.1f,%+6.1fI) Ohms" % (0.5, 4.0, z.real, z.imag)
+  z = impedance(frequency = 34.5, base_height = 0.5, length = 4.0)
+  print "Impedance at base_height=%0.2f, length=%0.2f : (%6.1f,%+6.1fI) Ohms" % (0.5, 4.0, z.real, z.imag)
