@@ -20,4 +20,20 @@ will print the impedance
 
     Impedance at base_height=0.50, length=4.00 : ( 134.0,-461.5I) Ohms
     
+## Impedance Mismatch
+
+Radio recevers and transmitters are designed to operate with antennas of a specific impedance (Z0). If the antenna
+has a different impedance (Z_ant), this impedance mismatch causes loss of signal. 
+
+The reflection coefficient measures how much signal is reflected at the junction between the antenna and the radio. 
+The reflection coefficient (Gamma) is given by
+
+    Gamma  = (Z_ant - Z0)/(Z_ant + Z0)
+
+The transmission coefficient is (1.0 - Gamma) and represents how much of the original signal makes it
+through this junction.
+
 ## Automatically tuning the monopole
+
+If we minimize the reflection coefficient, then the performance of the antenna will be optimized. This happens
+when Z_ant == Z0.
