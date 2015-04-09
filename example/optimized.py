@@ -1,18 +1,22 @@
+#
+#  Automatically tune antenna
+#
 import monopole
 import scipy.optimize
 import numpy as np
 
 # A function that will be minimized when the impedance is 50 Ohms
 def target(x):
-  freq = 34.5
+  freq = 134.5
   base_height = np.exp(x[0]) # Make it positive
   length = np.exp(x[1])  # Make it positive
   z = monopole.impedance(freq, base_height, length)
-  return np.abs(z - 50.0)
+  z0 = 50.0
+  return np.abs((z - z0) / (z + z0))
   
 
 # Starting value 
-x0 = [-1.0, 1.5]
+x0 = [-2.0, 0.0]
 # Carry out the minimization
 log_base, log_length = scipy.optimize.fmin(target, x0)
 

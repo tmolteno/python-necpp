@@ -1,3 +1,6 @@
+#
+#  Plot of reflection coefficient vs antenna length for a fixed base height.
+#
 import monopole
 import numpy as np
 import pylab as plt
