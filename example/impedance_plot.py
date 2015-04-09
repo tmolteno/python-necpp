@@ -10,7 +10,7 @@ def reflection_coefficient(base_height, length, z0):
   z = monopole.impedance(freq, base_height, length)
   return np.abs((z - z0) / (z + z0))
 
-lengths = np.linspace(1.0, 8.0, 170)
+lengths = np.linspace(0.2, 5.0, 270)
 reflections = []
 z0 = 50
 

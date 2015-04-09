@@ -36,10 +36,11 @@ through this junction.
 
 ## Automatically tuning the monopole
 
-If we minimize the reflection coefficient, then the performance of the antenna will be optimized. This happens
-when Z_ant == Z0. This is a relatively easy optimization. We can use matplotlib to plot the reflection coefficient
-as a function of length, when the base_height of the antenna is fixed.
+If we minimize the reflection coefficient, then the performance of the antenna will be optimized. 
+This is a relatively easy optimization. We can use matplotlib to plot the reflection coefficient
+as a function of length, with the base_height of the antenna fixed.
 
     python impedance_plot.py
     
-    
+This shows that for short lengths, less than 10 percent of the signal makes it through. There is a local minimum that
+occurs around 1.9m for which around 30 percent of the signal makes it through.
