@@ -25,5 +25,5 @@ def impedance(frequency, base_height, length):
   return z
 
 if (__name__ == '__main__'):
-  z = impedance(frequency = 34.5, base_height = 0.5, length = 4.0)
+  z = impedance(frequency = 134.5, base_height = 0.5, length = 4.0)
   print "Impedance at base_height=%0.2f, length=%0.2f : (%6.1f,%+6.1fI) Ohms" % (0.5, 4.0, z.real, z.imag)

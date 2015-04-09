@@ -18,7 +18,8 @@ The file monopole.py shows how to model a simple vertical whip antenna.
     
 will print the impedance
 
-    Impedance at base_height=0.50, length=4.00 : ( 134.0,-461.5I) Ohms
+    Impedance at base_height=0.50, length=4.00 : (  48.5, -92.1I) Ohms
+
     
 ## Impedance Mismatch
 
@@ -36,4 +37,9 @@ through this junction.
 ## Automatically tuning the monopole
 
 If we minimize the reflection coefficient, then the performance of the antenna will be optimized. This happens
-when Z_ant == Z0.
+when Z_ant == Z0. This is a relatively easy optimization. We can use matplotlib to plot the reflection coefficient
+as a function of length, when the base_height of the antenna is fixed.
+
+    python impedance_plot.py
+    
+    
