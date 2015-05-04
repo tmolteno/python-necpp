@@ -18,7 +18,7 @@ The file monopole.py shows how to model a simple vertical whip antenna.
     
 will print the impedance
 
-    Impedance at base_height=0.50, length=4.00 : (  48.5, -92.1I) Ohms
+    Impedance at base_height=0.50, length=4.00 : ( 142.2,-422.5I) Ohms
 
     
 ## Impedance Mismatch
@@ -34,7 +34,7 @@ The reflection coefficient (Gamma) is given by
 The transmission coefficient is (1.0 - Gamma) and represents how much of the original signal makes it
 through this junction.
 
-## Automatically tuning the monopole
+## Searching for an optimum antenna
 
 If we minimize the reflection coefficient, then the performance of the antenna will be optimized. 
 This is a relatively easy optimization. We can use matplotlib to plot the reflection coefficient
@@ -42,5 +42,5 @@ as a function of length, with the base_height of the antenna fixed.
 
     python impedance_plot.py
     
-This shows that for short lengths, less than 10 percent of the signal makes it through. There is a local minimum that
-occurs around 1.9m for which around 30 percent of the signal makes it through.
+This shows that for short lengths, less than 10 percent of the signal makes it through. There is a local minimum (of approximately 0.3)
+that occurs around 1.1m for which around 70 percent of the signal makes it through.
