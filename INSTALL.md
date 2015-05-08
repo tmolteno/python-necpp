@@ -23,6 +23,10 @@ This is included as a git submodule
     
     cd necpp; make -f Makefile.git; ./configure --without-lapack
 
+To update the submodule to the latest necpp
+
+    git submodule update --remote
+
 ### Converting from MarkDown
 
     sudo aptitude install pandoc swig
@@ -38,6 +42,5 @@ This will run SWIG a source distribution tarball
 ### Uploading to PyPI.
 
 http://peterdowns.com/posts/first-time-with-pypi.html
-
 
     python setup.py sdist upload -r pypitest

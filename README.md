@@ -7,12 +7,22 @@ library can be used.
 
 Tim Molteno. tim@physics.otago.ac.nz
 
+## NEWS
+
+* Version 1.7.0 includes support for getting elements of radiation patterns. At the moment
+  this is just through the function nec_get_gain().
+
+
 ## Install
 
 As of version 1.6.1.2 swig is no longer required for installation. Simply use PIP as 
 follows:
 
     pip install necpp
+
+## Documentation
+
+The functions available are documented in the C-style API of nec2++. This is (available here)[http://tmolteno.github.io/necpp/libnecpp_8h.html]
 
 ## Using
 
