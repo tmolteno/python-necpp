@@ -1,5 +1,6 @@
 #!/bin/bash
 # Script to build the nec2++ python module.
+git submodule update --remote
 pushd necpp_src
 make -f Makefile.git
 ./configure --without-lapack

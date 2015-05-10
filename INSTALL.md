@@ -19,9 +19,9 @@ be installed in the main part of the necpp code distribution.
 
 This is included as a git submodule
 
-    git submodule add git@github.com:tmolteno/necpp necpp
+    git submodule add git@github.com:tmolteno/necpp necpp_src
     
-    cd necpp; make -f Makefile.git; ./configure --without-lapack
+    cd necpp_src; make -f Makefile.git; ./configure --without-lapack
 
 To update the submodule to the latest necpp
 

@@ -2,7 +2,7 @@
 
 This module allows you to do antenna simulations in Python using the nec2++ antenna
 simulation package. This is a wrapper using SWIG of the C interface, so the syntax
-is quite simple. Have a look at the file test.py, for an example of how this 
+is quite simple. Have a look at the file necpp_src/example/test.py, for an example of how this 
 library can be used.
 
 Tim Molteno. tim@physics.otago.ac.nz
@@ -22,7 +22,7 @@ follows:
 
 ## Documentation
 
-The functions available are documented in the C-style API of nec2++. This is (available here)[http://tmolteno.github.io/necpp/libnecpp_8h.html]
+The functions available are documented in the C-style API of nec2++. This is [available here](http://tmolteno.github.io/necpp/libnecpp_8h.html)
 
 ## Using
 
