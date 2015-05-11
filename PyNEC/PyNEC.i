@@ -6,6 +6,7 @@
 %{
 #include "Python.h"
 #include "numpy/arrayobject.h"
+#include "numpy/ndarraytypes.h"
 #include "src/math_util.h"
 #include "src/nec_context.h"
 #include "src/c_geometry.h"
@@ -41,9 +42,13 @@
 /*! The following typemaps allow the automatic conversion of vectors and safe_arrays into numpy arrays */
 
 %typemap (out) real_array {
-        int nd = 1;
-        npy_intp size = $1.size();
-        $result =(PyObject *)(PyArray_SimpleNewFromData(nd, &size, NPY_FLOAT64, (void *)($1.data()) ));
+  int nd = 1;
+  npy_intp size = $1.size();
+//   $result =(PyObject *)(PyArray_SimpleNewFromData(nd, &size, NPY_FLOAT64, (void *)($1.data()) ));
+  PyArrayObject* ret =(PyArrayObject *)(PyArray_SimpleNew(nd, &size, NPY_FLOAT64));
+  for (int64_t i=0; i<size; i++)
+      *((double *) PyArray_GETPTR1(ret, i)) = $1.getItem(i);
+  $result = (PyObject*) ret;
 }
 
 %typemap (out) int_array {
@@ -59,24 +64,28 @@
 }
 
 %typemap (out) vector<nec_float> {
-        vector<double>::pointer ptr = &($1[0]);
-        int nd = 1;
-        npy_intp size = $1.size();
-        $result =(PyObject *)(PyArray_SimpleNewFromData(nd, &size, NPY_FLOAT64, (void *)($1.data()) ));
+  vector<double>::pointer ptr = &($1[0]);
+  int nd = 1;
+  npy_intp size = $1.size();
+//   $result =(PyObject *)(PyArray_SimpleNewFromData(nd, &size, NPY_FLOAT64, (void *)(ptr)));
+  PyArrayObject* ret =(PyArrayObject *)(PyArray_SimpleNew(nd, &size, NPY_FLOAT64));
+  for (int64_t i=0; i<size; i++)
+      *((double *) PyArray_GETPTR1(ret, i)) = $1[i];
+  $result = (PyObject*) ret;
 }
 
 %typemap (out) vector<int> {
         vector<int>::pointer ptr = &($1[0]);
         int nd = 1;
         npy_intp size = $1.size();
-        $result =(PyObject *)(PyArray_SimpleNewFromData(nd, &size, NPY_INT32, (void *)($1.data()) ));
+        $result =(PyObject *)(PyArray_SimpleNewFromData(nd, &size, NPY_INT32, (void *)(ptr)));
 }
 
 %typemap (out) vector<nec_complex> {
         vector<nec_complex>::pointer ptr = &($1[0]);
         int nd = 1;
         npy_intp size = $1.size();
-        $result =(PyObject *)(PyArray_SimpleNewFromData(nd, &size, NPY_COMPLEX64, (void *)($1.data()) ));
+        $result =(PyObject *)(PyArray_SimpleNewFromData(nd, &size, NPY_COMPLEX64, (void *)(ptr) ));
 }
 
 /*! The two following interface files have only been created to avoid errors during the wrapping process. */

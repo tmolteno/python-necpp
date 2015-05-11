@@ -4,6 +4,6 @@ here to respect the structure of the original code. */
 typedef double nec_float;
 typedef std::complex<nec_float> nec_complex;
 
-typedef safe_array<int> int_array;
+typedef safe_array<int32_t> int_array;
 typedef safe_array<nec_float>  real_array;
 typedef safe_array<nec_complex>  complex_array;

@@ -11,5 +11,5 @@ make -f Makefile.git
 ./configure --without-lapack
 popd
 
-swig -v -c++ -python PyNEC.i
+swig -Wall -v -c++ -python PyNEC.i
 python setup.py build
