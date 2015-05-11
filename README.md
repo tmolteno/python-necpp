@@ -11,6 +11,7 @@ Tim Molteno. tim@physics.otago.ac.nz
 
 * Version 1.7.0 includes support for getting elements of radiation patterns. At the moment
   this is just through the function nec_get_gain().
+* Version 1.7.0.3 includes nec_medium_parameters(). You could simulate an antenna in seawater!
 
 
 ## Install
@@ -22,7 +23,8 @@ follows:
 
 ## Documentation
 
-The functions available are documented in the C-style API of nec2++. This is [available here](http://tmolteno.github.io/necpp/libnecpp_8h.html)
+Try help(necpp) to list the available functions. The functions available are documented in the C-style API of nec2++. 
+This is [available here](http://tmolteno.github.io/necpp/libnecpp_8h.html)
 
 ## Using
 
