@@ -1,14 +1,10 @@
-from necpp import *
+from PyNEC import *
 
 
 import unittest
 
 class TestDipoleGain(unittest.TestCase):
 
-  def handle_nec(self, result):
-    if (result != 0):
-      print nec_error_message()
-    self.assertEqual(result,0)
 
   def test_example4(self):
     '''

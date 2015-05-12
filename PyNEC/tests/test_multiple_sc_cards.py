@@ -6,10 +6,6 @@ import unittest
 
 class TestSurfacePatches(unittest.TestCase):
 
-  def handle_nec(self, result):
-    if (result != 0):
-      print nec_error_message()
-    self.assertEqual(result,0)
 
   ''' CM W2IMU 10GHz F=0.55
       CE ************************************
