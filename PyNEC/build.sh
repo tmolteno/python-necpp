@@ -1,15 +1,19 @@
 #!/bin/bash
 #
-# if [ ! -e necpp_src ]
-#   then
-#     ln -s ../necpp necpp_src
-# fi
+# Build script for the PyNEC module. 
+#
+# Author. Tim Molteno.
+#
 git submodule update --remote
 # 
-#pushd necpp_src
-#make -f Makefile.git
-#./configure --without-lapack
-#popd
+pushd ../necpp_src
+make -f Makefile.git
+./configure --without-lapack
+popd
 
+# Generate a README.txt from README.md
+pandoc -o README.txt README.md
+
+# Build PyNEC
 swig -Wall -v -c++ -python PyNEC.i
 python setup.py build

@@ -2,6 +2,8 @@
 
 """
 setup.py file for PyNEC Python module
+
+Author Tim Molteno. tim@molteno.net
 """
 
 from distutils.core import setup, Extension

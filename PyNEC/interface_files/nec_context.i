@@ -1,19 +1,12 @@
 class nec_context
 {
-	int index=0;
+  int index=0;
 
 public:
           
   nec_context();
   
   virtual ~nec_context();
-
-  
-  
-  /*! Must be called after construction */
-  void initialize();
-
-
 
   /*! Get the associated c_geometry object */
   c_geometry* get_geometry();
@@ -31,7 +24,7 @@ public:
   /*! Get the result norm_rx_pattern specified by index
   
           \param index The index of the requested result.
-  */ 		
+  */
   inline nec_norm_rx_pattern* get_norm_rx_pattern(int index);
   
   
@@ -39,7 +32,7 @@ public:
   /*! Get the result radiation_pattern specified by index
   
           \param index The index of the requested result.
-  */ 	
+  */
   inline nec_radiation_pattern* get_radiation_pattern(int index);
   
   
@@ -47,7 +40,7 @@ public:
   /*! Get the result structure_excitation specified by index
   
           \param index The index of the requested result.
-  */ 		
+  */
   inline nec_structure_excitation* get_structure_excitation(int index);
   
   
@@ -55,7 +48,7 @@ public:
   /*! Get the result near_field_pattern specified by index
   
           \param index The index of the requested result.
-  */ 
+  */
   inline nec_near_field_pattern* get_near_field_pattern(int index);
   
   
@@ -63,11 +56,11 @@ public:
   /*! Get the result structure_currents specified by index
   
           \param index The index of the requested result.
-  */ 
+  */
   inline nec_structure_currents* get_structure_currents(int index);
   
           
-/* Indicates the end of the geometry input
+  /* Indicates the end of the geometry input
   
     \param card_int_1 Geometry ground plain flag :
             card_int_1 = 0 : no ground plane is present.
@@ -82,26 +75,16 @@ public:
   */              
   void geometry_complete(int card_int_1);
 
-  %extend{
-          
-          /*! Frequency parameters
-          
-                  \param ifrq Determines the type of frequency stepping :
-                          in_ifrq = 0 : linear stepping
-                          in_ifrq = 1 : mutliplicative stepping.
-                  \param nfrq The number of frequency steps.
-                  \param freq_hz The frequency first value in Herz.
-                  \param del_freq The frequency stepping increment.
-          */		 
-          void fr_card(int ifrq, int nfrq, nec_float freq_hz, nec_float del_freq)
-          {
-                  nec_float freq_mhz = freq_hz * 1.0e-6;
-                  
-                  return self->fr_card(ifrq, nfrq, freq_mhz, del_freq);
-          }
-  }
-          
+  /*! Frequency parameters
   
+          \param ifrq Determines the type of frequency stepping :
+                  in_ifrq = 0 : linear stepping
+                  in_ifrq = 1 : mutliplicative stepping.
+          \param nfrq The number of frequency steps.
+          \param freq_hz The frequency first value in MHz.
+          \param del_freq The frequency stepping increment.
+  */     
+  void fr_card(int ifrq, int nfrq, nec_float freq_hz, nec_float del_freq);
           
   /* Specifies the impedance loading on one segment or a number of segments. Series and parallel RLC circuits can be generated.
     In addition, a finite conductivity can be specified for segments.
@@ -129,7 +112,7 @@ public:
                       else tmp2 = 0.
                       
           \param tmp3 If itmp1 = 0, 1, 2 or 3 : the capacitance ;
-                      else tmp3 = 0.	
+                      else tmp3 = 0.  
   */
   void ld_card(int itmp1, int itmp2, int itmp3, int itmp4, nec_float tmp1, nec_float tmp2, nec_float tmp3);
 
@@ -165,7 +148,7 @@ public:
                       Y axis. Specification of the circular or linear option is on the RP card.
                       
           \param tmp6 Zero for the case of an infinite ground plane and if rad_wire >0 ;
-                      else the distance (positive or zero) by which the surface of medium 2 is below medium 1.			
+                      else the distance (positive or zero) by which the surface of medium 2 is below medium 1.      
   */
   void gn_card(int ground_type, int rad_wire_count, nec_float tmp1, nec_float tmp2, nec_float tmp3, nec_float tmp4, nec_float tmp5, nec_float tmp6);
   
@@ -179,11 +162,11 @@ public:
           \param tmp1 The relative dielectric constant of medium 2.
           \param tmp2 The conductivity of medium 2 in mhos/meter.
           
-          \param tmp3 The distance from the origin of the	coordinate system to join between medium 1 and 2. This distance is either
+          \param tmp3 The distance from the origin of the  coordinate system to join between medium 1 and 2. This distance is either
                   the radius of the circle where the two media join or the distance from the X axis to where the two media join in
                   a line parallel to the Y axis. Specification of the circular or linear option is on the RP card.
                   
-          \param tmp4 The distance (positive or zero) by which the surface of medium 2 is below medium 1.	
+          \param tmp4 The distance (positive or zero) by which the surface of medium 2 is below medium 1.  
   */
   void gd_card(nec_float tmp1, nec_float tmp2, nec_float tmp3, nec_float tmp4);
   
@@ -243,7 +226,7 @@ public:
   
                   \param tmp6 If excitation_type = 0 or 5 : zero.
                               else excitation_type = 1, 2 or 3 : ratio of minor axis to major axis for elliptic polarization (major axis field strength - 1 V/m).
-                              else if excitation_type = 4 : "Current moment" of the source (in amp meter).		
+                              else if excitation_type = 4 : "Current moment" of the source (in amp meter).    
           */
           void ex_card(enum excitation_type itmp1, int itmp2, int itmp3, int itmp4, int itmp5,
                           nec_float tmp1, nec_float tmp2, nec_float tmp3, nec_float tmp4, nec_float tmp5, nec_float tmp6)
@@ -251,7 +234,7 @@ public:
                   int itmp45 = 10*itmp4 + itmp5;
                   return self->ex_card( itmp1, itmp2, itmp3, itmp45, tmp1, tmp2, tmp3, tmp4, tmp5, tmp6 );  
           }
-  }		
+  }
   
   
   
@@ -279,7 +262,7 @@ public:
           \param tmp4 Imaginary part of the shunt admittance in mhos at end one.
           
           \param tmp5 Real part of the shunt admittance in mhos at end two
-          \param tmp6 Imaginary part of the shunt admittance in mhos at end two. 	
+          \param tmp6 Imaginary part of the shunt admittance in mhos at end two.   
   */
   void tl_card(int itmp1, int itmp2, int itmp3, int itmp4, nec_float tmp1, nec_float tmp2, nec_float tmp3, nec_float tmp4, nec_float tmp5, nec_float tmp6);
   
@@ -359,7 +342,7 @@ public:
           
           \param output_format If calc_mode = 1 : zero ;
                                 else controls the output format :
-                                  output_format = 0 : major axis, minor axis and total gain printed.					
+                                  output_format = 0 : major axis, minor axis and total gain printed.          
                                   output_format = 1 : vertical, horizontal ant total gain printed.
                                   
           \param normalization If calc_mode = 1 : zero ;
@@ -398,7 +381,7 @@ public:
                                           in the far-field region since near components of the field cannot be obtained with an RP card.
           
           \param gain_norm Gain normalization factor if normalization has been required by the parameter normalization.
-                  If gain_norm = 0 the gain will be normalized to its maximum value.	
+                  If gain_norm = 0 the gain will be normalized to its maximum value.  
   */
   void rp_card(int calc_mode,
           int n_theta, int n_phi,
@@ -450,7 +433,7 @@ public:
   
   /*! Sets the minimum separation distance for use of a time-saving approximation in filling the interaction matrix.
   
-          \param tmp1 The approximation is used for interactions over distances greater than tmp1 wavelengths.	
+          \param tmp1 The approximation is used for interactions over distances greater than tmp1 wavelengths.  
   */
   void kh_card(nec_float tmp1);
   
