@@ -173,71 +173,71 @@ public:
   
   
   %extend{
-  
-          /*! Specifies the excitation for the structure. The excitation can be voltage sources on the structure, an elementary current source,
-            or a plane-wave incident on the structure.
-  
-            All angles are in degrees.
-  
-                  \param excitation_type Determines the type of excitation which is used :
-                          excitation_type = O - voltage source (applied-E-field source). 
-                          excitation_type = 1 - incident plane wave, linear polarization. 
-                          excitation_type = 2 - incident plane wave, right-hand (thumb along the incident k vector) elliptic polarization. 
-                          excitation_type = 3 - incident plane wave, left-hand elliptic polarization. 
-                          excitation_type = 4 - elementary current source. 
-                          excitation_type = 5 - voltage source (current-slope-discontinuity).
-          
-                  \param itmp2 If excitation_type = 0 or 5 : the tag number of the source segment  (if itmp1 = 0 absolute segment numbers will be used) ;
-                                else if excitation_type = 1, 2 or 3 : number of theta angles desired for the incident plane wave ;
-                                else zero.
-                        
-                  \param itmp3 If excitation_type = 0 or 5 : the rank (among the segments the tag number of which is itmp2) or absolute segment number
-                                  of the source segment ;
-                                else if excitation_type = 1, 2 or 3 : number of phi angles desired for the incident plane wave ;
-                                else zero.
-                  
-                  \param itmp4 If itmp4 = 1 the maximum relative admittance matrix asymmetry for source segment (if excitation_type = 0 or 5) and
-                          network connections (whatever excitation_type may be) will be calculated and printed.
-                  
-                  \param itmp5 If excitation_type = 0 or 5 : tmp3 will be taken under account if itmp5 = 1 ;
-                                else zero.
-                  
-                  \param tmp1 If excitation_type = 0 or 5 : the real part of the voltage  ;
-                              else if excitation_type = 1, 2 or 3 : the first value of theta ;
-                              else the x-coordinate of the current source.
-                  
-                  \param tmp2 If excitation_type = 0 or 5 : the imaginary part of the voltage  ;
-                              else if excitation_type = 1, 2 or 3 : the first value of phi ;
-                              else if excitation_type = 4 : the y-coordinate of the current source.
-                  
-                  \param tmp3 If excitation_type = 0 or 5 : the normalization constant for the impedance printed in the optional impedance table (if tmp3 = 0
-                                  the impedance will be normalized to their maximum value) ;
-                              else if excitation_type = 1, 2 or 3 : eta in degrees. Eta is the polarization angle defined as the angle between the
-                                  theta unit vector and the direction of the electric field for linear polarization or the major ellipse axis for elliptical polarization ;
-                              else if excitation_type = 4 : the z-coordinate of the current source.
-                  
-                  \param tmp4 If excitation_type = 0 or 5 : zero.
-                              else excitation_type = 1, 2 or 3 : theta angle stepping increment.
-                              else if excitation_type = 4 : the angle the current source makes with the XY plane.
-                      
-                  \param tmp5 If excitation_type = 0 or 5 : zero.
-                              else excitation_type = 1, 2 or 3 : phi angle stepping increment.
-                              else if excitation_type = 4 : the angle the projection of the current source on the XY plane makes with the X axis.
-  
-                  \param tmp6 If excitation_type = 0 or 5 : zero.
-                              else excitation_type = 1, 2 or 3 : ratio of minor axis to major axis for elliptic polarization (major axis field strength - 1 V/m).
-                              else if excitation_type = 4 : "Current moment" of the source (in amp meter).    
-          */
-          void ex_card(enum excitation_type itmp1, int itmp2, int itmp3, int itmp4, int itmp5,
-                          nec_float tmp1, nec_float tmp2, nec_float tmp3, nec_float tmp4, nec_float tmp5, nec_float tmp6)
-          {
-                  int itmp45 = 10*itmp4 + itmp5;
-                  return self->ex_card( itmp1, itmp2, itmp3, itmp45, tmp1, tmp2, tmp3, tmp4, tmp5, tmp6 );  
-          }
+    void geometry_complete(int card_int_1, int card_int_2)
+    {
+      return self->geometry_complete(card_int_1);
+    }
   }
   
   
+  /*! Specifies the excitation for the structure. The excitation can be voltage sources on the structure, an elementary current source,
+    or a plane-wave incident on the structure.
+
+    All angles are in degrees.
+
+          \param excitation_type Determines the type of excitation which is used :
+                  excitation_type = O - voltage source (applied-E-field source). 
+                  excitation_type = 1 - incident plane wave, linear polarization. 
+                  excitation_type = 2 - incident plane wave, right-hand (thumb along the incident k vector) elliptic polarization. 
+                  excitation_type = 3 - incident plane wave, left-hand elliptic polarization. 
+                  excitation_type = 4 - elementary current source. 
+                  excitation_type = 5 - voltage source (current-slope-discontinuity).
   
+          \param itmp2 If excitation_type = 0 or 5 : the tag number of the source segment  (if itmp1 = 0 absolute segment numbers will be used) ;
+                        else if excitation_type = 1, 2 or 3 : number of theta angles desired for the incident plane wave ;
+                        else zero.
+                
+          \param itmp3 If excitation_type = 0 or 5 : the rank (among the segments the tag number of which is itmp2) or absolute segment number
+                          of the source segment ;
+                        else if excitation_type = 1, 2 or 3 : number of phi angles desired for the incident plane wave ;
+                        else zero.
+          
+          \param itmp4 If itmp4 = 1 the maximum relative admittance matrix asymmetry for source segment (if excitation_type = 0 or 5) and
+                  network connections (whatever excitation_type may be) will be calculated and printed.
+          
+          \param itmp5 If excitation_type = 0 or 5 : tmp3 will be taken under account if itmp5 = 1 ;
+                        else zero.
+          
+          \param tmp1 If excitation_type = 0 or 5 : the real part of the voltage  ;
+                      else if excitation_type = 1, 2 or 3 : the first value of theta ;
+                      else the x-coordinate of the current source.
+          
+          \param tmp2 If excitation_type = 0 or 5 : the imaginary part of the voltage  ;
+                      else if excitation_type = 1, 2 or 3 : the first value of phi ;
+                      else if excitation_type = 4 : the y-coordinate of the current source.
+          
+          \param tmp3 If excitation_type = 0 or 5 : the normalization constant for the impedance printed in the optional impedance table (if tmp3 = 0
+                          the impedance will be normalized to their maximum value) ;
+                      else if excitation_type = 1, 2 or 3 : eta in degrees. Eta is the polarization angle defined as the angle between the
+                          theta unit vector and the direction of the electric field for linear polarization or the major ellipse axis for elliptical polarization ;
+                      else if excitation_type = 4 : the z-coordinate of the current source.
+          
+          \param tmp4 If excitation_type = 0 or 5 : zero.
+                      else excitation_type = 1, 2 or 3 : theta angle stepping increment.
+                      else if excitation_type = 4 : the angle the current source makes with the XY plane.
+              
+          \param tmp5 If excitation_type = 0 or 5 : zero.
+                      else excitation_type = 1, 2 or 3 : phi angle stepping increment.
+                      else if excitation_type = 4 : the angle the projection of the current source on the XY plane makes with the X axis.
+
+          \param tmp6 If excitation_type = 0 or 5 : zero.
+                      else excitation_type = 1, 2 or 3 : ratio of minor axis to major axis for elliptic polarization (major axis field strength - 1 V/m).
+                      else if excitation_type = 4 : "Current moment" of the source (in amp meter).    
+  */
+  void ex_card(enum excitation_type itmp1, int itmp2, int itmp3, int itmp4, int itmp5,
+                  nec_float tmp1, nec_float tmp2, nec_float tmp3, nec_float tmp4, nec_float tmp5, nec_float tmp6);
+ 
+
   /*! Generates a transmission line between any two points on the structure. Characteristic impedance, length, and shunt admittance
     are the defining parameters.
     

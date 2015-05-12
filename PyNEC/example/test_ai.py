@@ -33,7 +33,7 @@ geo.wire(0, 8, 0, 0, -.25, 0, 0, .25, .00001, 1, 1)
 context.geometry_complete(0)
 
 #add a "fr" card to specify the frequency 
-context.fr_card(0, 3, 200e6, 50)
+context.fr_card(0, 3, 200.0, 50)
 
 #add a "ex" card to specify an excitation
 context.ex_card(5, 0, 5, 0, 0, 1, 0, 0, 0, 0, 0)

@@ -44,7 +44,7 @@ context.geometry_complete(0)
 context.ek_card(1)
 
 #add a "fr" card to specify the frequency 
-context.fr_card(0, 1, 30e6, 0)
+context.fr_card(0, 1, 30.0, 0)
 
 #add a "gn" card to specify the ground parameters
 context.gn_card(0, 0, 6., 0.001, 0, 0, 0, 0)

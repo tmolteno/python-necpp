@@ -19,7 +19,7 @@ context.gn_card(-1, 0, 0, 0, 0, 0, 0, 0)
 context.ex_card(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
 
 #add a "fr" card to specify the frequency 
-context.fr_card(0, 2, 2.400, 100.0e6)
+context.fr_card(0, 2, 2400, 100.0e6)
 
 #add a "rp" card to specify radiation pattern sampling parameters and to cause program execution
 context.rp_card(0, 91, 1, 0, 5, 0, 0, 0.0, 45.0, 4.0, 2.0, 1.0, 0.0)
