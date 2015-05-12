@@ -93,7 +93,13 @@ public:
     \param nop The total number of times that the structure is to occur in the cylindrical array.  
   */
   void generate_cylindrical_structure(int itx, int nop);
-                  
+  
+  void sp_card( int ns,
+                nec_float in_x1, nec_float in_y1, nec_float in_z1,
+                nec_float in_x2, nec_float in_y2, nec_float in_z2);
+                
+  void gx_card(int card_int_1, int card_int_2);
+
   %extend{
   
     /*! Move the structure with respect to its coordinate system or reproduces structure in new positions,
