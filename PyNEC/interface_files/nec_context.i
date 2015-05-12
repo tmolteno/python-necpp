@@ -236,6 +236,8 @@ public:
   */
   void ex_card(enum excitation_type itmp1, int itmp2, int itmp3, int itmp4, int itmp5,
                   nec_float tmp1, nec_float tmp2, nec_float tmp3, nec_float tmp4, nec_float tmp5, nec_float tmp6);
+  void ex_card(enum excitation_type itmp1, int itmp2, int itmp3, int itmp4,
+                  nec_float tmp1, nec_float tmp2, nec_float tmp3, nec_float tmp4, nec_float tmp5, nec_float tmp6);
  
 
   /*! Generates a transmission line between any two points on the structure. Characteristic impedance, length, and shunt admittance

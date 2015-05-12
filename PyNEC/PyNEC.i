@@ -82,7 +82,6 @@
 }
 
 %typemap (out) vector<nec_float> {
-  vector<nec_float>::pointer ptr = &($1[0]);
   int nd = 1;
   npy_intp size = $1.size();
   PyArrayObject* ret =(PyArrayObject *)(PyArray_SimpleNew(nd, &size, NPY_FLOAT64));
@@ -92,10 +91,8 @@
 }
 
 %typemap (out) vector<int> {
-  vector<int>::pointer ptr = &($1[0]);
   int nd = 1;
   npy_intp size = $1.size();
-  // $result =(PyObject *)(PyArray_SimpleNewFromData(nd, &size, NPY_INT32, (void *)(ptr)));
   PyArrayObject* ret =(PyArrayObject *)(PyArray_SimpleNew(nd, &size, NPY_INT32));
   for (int64_t i=0; i<size; i++)
       *((int *) PyArray_GETPTR1(ret, i)) = $1[i];
@@ -103,10 +100,8 @@
 }
 
 %typemap (out) vector<nec_complex> {
-  vector<nec_complex>::pointer ptr = &($1[0]);
   int nd = 1;
   npy_intp size = $1.size();
-  // $result =(PyObject *)(PyArray_SimpleNewFromData(nd, &size, NPY_COMPLEX64, (void *)(ptr) ));
   PyArrayObject* ret =(PyArrayObject *)(PyArray_SimpleNew(nd, &size, NPY_COMPLEX64));
   for (int64_t i=0; i<size; i++)
       *((nec_complex *) PyArray_GETPTR1(ret, i)) = $1[i];
