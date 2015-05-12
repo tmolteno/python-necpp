@@ -75,9 +75,10 @@
 %typemap (out) complex_array {
   int nd = 1;
   npy_intp size = $1.size();
-  PyArrayObject* ret =(PyArrayObject *)(PyArray_SimpleNew(nd, &size, NPY_COMPLEX64));
-  for (int64_t i=0; i<size; i++)
+  PyArrayObject* ret =(PyArrayObject *)(PyArray_SimpleNew(nd, &size, NPY_COMPLEX128));
+  for (int64_t i=0; i<size; i++) {
       *((nec_complex *) PyArray_GETPTR1(ret, i)) = $1.getItem(i);
+  }
   $result = (PyObject*) ret;
 }
 
@@ -86,7 +87,7 @@
   npy_intp size = $1.size();
   PyArrayObject* ret =(PyArrayObject *)(PyArray_SimpleNew(nd, &size, NPY_FLOAT64));
   for (int64_t i=0; i<size; i++)
-      *((nec_float *) PyArray_GETPTR1(ret, i)) = $1[i];
+      *((npy_float64 *) PyArray_GETPTR1(ret, i)) = $1.at(i);
   $result = (PyObject*) ret;
 }
 
@@ -102,9 +103,10 @@
 %typemap (out) vector<nec_complex> {
   int nd = 1;
   npy_intp size = $1.size();
-  PyArrayObject* ret =(PyArrayObject *)(PyArray_SimpleNew(nd, &size, NPY_COMPLEX64));
-  for (int64_t i=0; i<size; i++)
-      *((nec_complex *) PyArray_GETPTR1(ret, i)) = $1[i];
+  PyArrayObject* ret =(PyArrayObject *)(PyArray_SimpleNew(nd, &size, NPY_COMPLEX128));
+  for (int64_t i=0; i<size; i++) {
+      *((nec_complex *) PyArray_GETPTR1(ret, i)) = $1.at(i);
+   }
   $result = (PyObject*) ret;
 }
 

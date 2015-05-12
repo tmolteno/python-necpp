@@ -33,7 +33,9 @@ class TestDipoleGain(unittest.TestCase):
     nec.xq_card(0)
     
     ipt = nec.get_input_parameters(0)
-    z = ipt.get_impedance();
+    print dir(ipt)
+    z = ipt.get_impedance()
+    print dir(z)
     print z
     
     self.assertAlmostEqual(z[0].real,82.69792906662622)
