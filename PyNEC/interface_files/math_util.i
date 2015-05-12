@@ -7,3 +7,6 @@ typedef std::complex<nec_float> nec_complex;
 typedef safe_array<int32_t> int_array;
 typedef safe_array<nec_float>  real_array;
 typedef safe_array<nec_complex>  complex_array;
+
+typedef safe_matrix<nec_float>  real_matrix;
+typedef safe_matrix<nec_complex>  complex_matrix;

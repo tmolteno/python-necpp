@@ -4,12 +4,12 @@
 #   then
 #     ln -s ../necpp necpp_src
 # fi
-# git submodule update --remote
+git submodule update --remote
 # 
-pushd necpp_src
-make -f Makefile.git
-./configure --without-lapack
-popd
+#pushd necpp_src
+#make -f Makefile.git
+#./configure --without-lapack
+#popd
 
 swig -Wall -v -c++ -python PyNEC.i
 python setup.py build
