@@ -19,7 +19,7 @@ def geometry(freq, base, length):
   n_seg = int(math.ceil(50*length/wavelength))
   nec = nec_create()
   handle_nec(nec_wire(nec, 1, n_seg, 0, 0, base, 0, 0, base+length, 0.002, 1.0, 1.0))
-  handle_nec(nec_geometry_complete(nec, 1, 0))
+  handle_nec(nec_geometry_complete(nec, 1))
   handle_nec(nec_ld_card(nec, 5, 0, 0, 0, conductivity, 0.0, 0.0))
   handle_nec(nec_gn_card(nec, 0, 0, ground_dielectric, ground_conductivity, 0, 0, 0, 0))
   handle_nec(nec_fr_card(nec, 0, 1, freq, 0))
