@@ -76,7 +76,24 @@ public:
 	*/
 	void scale( nec_float xw1);
 	
-	
+  /*! Reflects partial structure along x,y, or z axes.
+          
+    \param ix If ix = 1 then the structure is reflected along X axis. 
+    \param iy If iy = 1 then the structure is reflected along Y axis.
+    \param iz If iz = 1 then the structure is reflected along Z axis.
+    \param itx The tag number increment.    
+  */
+  void reflect(int ix, int iy, int iz, int itx);
+
+
+
+  /*! Rotates structure along Z-axis to complete a symmetric structure.
+
+    \param itx The tag number increment.
+    \param nop The total number of times that the structure is to occur in the cylindrical array.  
+  */
+  void generate_cylindrical_structure(int itx, int nop);
+                	
 	%extend{
 	
 		/*! Move the structure with respect to its coordinate system or reproduces structure in new positions,
@@ -108,31 +125,7 @@ public:
 
 
 
-		/*! Reflects partial structure along x,y, or z axes.
-			
-			\param ix If ix = 1 then the structure is reflected along X axis. 
-			\param iy If iy = 1 then the structure is reflected along Y axis.
-			\param iz If iz = 1 then the structure is reflected along Z axis.
-			\param itx The tag number increment.	
-		*/
-		void reflect(int ix, int iy, int iz, int itx)
-		{
-			int nop = 100*ix + 10*iy + iz;
-			return self->reflect(ix, iy, iz, itx, nop);
-		}
-		
-		
-		
-		/*! Rotates structure along Z-axis to complete a symmetric structure.
-		
-			\param itx The tag number increment.
-			\param nop The total number of times that the structure is to occur in the cylindrical array.  
-		*/
-		void generate_cylindrical_structure(int itx, int nop)
-		{
-			return self->reflect(-1, 0, 0, itx, nop);
-		}
-		
+
 		
 		
 		/*! Add a arbitrary-shaped patch to the geometry

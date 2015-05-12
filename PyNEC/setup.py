@@ -5,9 +5,17 @@ setup.py file for PyNEC Python module
 """
 
 from distutils.core import setup, Extension
+import distutils.sysconfig
 from glob import glob
 import os
 
+# Remove silly flags from the compilation to avoid warnings.
+cfg_vars = distutils.sysconfig.get_config_vars()
+for key, value in cfg_vars.items():
+  if type(value) == str:
+    cfg_vars[key] = value.replace("-Wstrict-prototypes", "")
+
+# Generate a list of the sources.   
 nec_sources = []
 nec_sources.extend([fn for fn in glob('../necpp_src/src/*.cpp') 
          if not os.path.basename(fn).endswith('_tb.cpp')
