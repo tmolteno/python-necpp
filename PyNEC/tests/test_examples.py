@@ -192,7 +192,6 @@ class TestDipoleGain(unittest.TestCase):
     self.assertAlmostEqual(z[0].real,180.727,3)
     self.assertAlmostEqual(z[0].imag,217.654,3)
 
-    
 
 if __name__ == '__main__':
   unittest.main()
