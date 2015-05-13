@@ -10,6 +10,8 @@ from distutils.core import setup, Extension
 import distutils.sysconfig
 from glob import glob
 import os
+import numpy as np
+
 
 # Remove silly flags from the compilation to avoid warnings.
 cfg_vars = distutils.sysconfig.get_config_vars()
@@ -37,7 +39,7 @@ nec_headers.extend(glob("../necpp_src/config.h"))
 necpp_module = Extension('_PyNEC',
     sources=nec_sources,
     #swig_opts=['-v', '-I../src/', '-dhtml'],
-    include_dirs=['../necpp_src/src', '../necpp_src/'],
+    include_dirs=[np.get_include(), '../necpp_src/src', '../necpp_src/'],
     extra_compile_args = ['-fPIC'],
     extra_link_args = ['-shared', '-lstdc++'],
     depends=nec_headers,
