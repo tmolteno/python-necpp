@@ -19,9 +19,9 @@ be installed in the main part of the necpp code distribution.
 
 This is included as a git submodule
 
-    git submodule add git@github.com:tmolteno/necpp necpp_src
-    
-    cd necpp_src; make -f Makefile.git; ./configure --without-lapack
+    git clone https://github.com/tmolteno/python-necpp.git
+    git submodule init
+    git submodule update --remote
 
 To update the submodule to the latest necpp
 
