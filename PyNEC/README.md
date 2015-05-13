@@ -57,6 +57,7 @@ Here is an example that plots a radiation pattern.
 
     git clone https://github.com/tmolteno/python-necpp.git
     cd python-necpp
+    git submodule init
     git submodule update --remote
     cd PyNEC
     ./build.sh
