@@ -40,19 +40,11 @@ necpp_module = Extension('_PyNEC',
     sources=nec_sources,
     include_dirs=[np.get_include(), '../necpp_src/src', '../necpp_src/'],
     extra_compile_args = ['-fPIC'],
-    # extra_link_args = ['-shared', '-lstdc++'],
     extra_link_args = ['-lstdc++'],
     depends=nec_headers,
     define_macros=[('BUILD_PYTHON', '1'), ('NPY_NO_DEPRECATED_API','NPY_1_7_API_VERSION')]
     )
 
-# 
-#   
-#necpp_module = Extension('_necpp',
-                           #sources=['necpp_wrap.c'],
-                           #include_dirs=['/usr/local/include'],
-                           #libraries=['necpp']
-                           #)
 
 
 setup (name = 'PyNEC',
