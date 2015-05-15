@@ -23,20 +23,20 @@ class TestDipoleGain(unittest.TestCase):
     EN
     '''
     nec = nec_create()
-    self.handle_nec(nec_sp_card(nec, 0, 0.1, 0.05, 0.05, 0.0, 0.0, 0.01))
-    self.handle_nec(nec_sp_card(nec, 0, .05, .1, .05, 0.0, 90.0, 0.01))
-    self.handle_nec(nec_gx_card(nec, 0, 110))
-    self.handle_nec(nec_sp_card(nec, 0, 0.0, 0.0, 0.1, 90.0, 0.0, 0.04))
+    nec.sp_card(0, 0.1, 0.05, 0.05, 0.0, 0.0, 0.01)
+    nec.sp_card(0, .05, .1, .05, 0.0, 90.0, 0.01)
+    nec.gx_card(0, 110)
+    nec.sp_card(0, 0.0, 0.0, 0.1, 90.0, 0.0, 0.04)
     
-    self.handle_nec(nec_wire(nec, 1, 4, 0., 0.0, 0.1, 0.0,  0.0, 0.3, .001, 1.0, 1.0))
-    self.handle_nec(nec_wire(nec, 2, 2, 0., 0.0, 0.3, 0.15, 0.0, 0.3, .001, 1.0, 1.0))
-    self.handle_nec(nec_wire(nec, 3, 2, 0., 0.0, 0.3, -.15, 0.0, 0.3, .001, 1.0, 1.0))
+    nec.wire(1, 4, 0., 0.0, 0.1, 0.0,  0.0, 0.3, .001, 1.0, 1.0)
+    nec.wire(2, 2, 0., 0.0, 0.3, 0.15, 0.0, 0.3, .001, 1.0, 1.0)
+    nec.wire(3, 2, 0., 0.0, 0.3, -.15, 0.0, 0.3, .001, 1.0, 1.0)
 
-    self.handle_nec(nec_geometry_complete(nec, 1))
-    self.handle_nec(nec_gn_card(nec, 1, 0, 0, 0, 0, 0, 0, 0))
+    nec.geometry_complete(1)
+    nec.gn_card(1, 0, 0, 0, 0, 0, 0, 0)
     
-    self.handle_nec(nec_ex_card(nec, 0, 1, 1, 0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0))
-    self.handle_nec(nec_rp_card(nec, 0,10,4,1,0,0,1,0.0,0.0,10.0,30.0, 0, 0))
+    nec.ex_card(0, 1, 1, 0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+    nec.rp_card(0,10,4,1,0,0,1,0.0,0.0,10.0,30.0, 0, 0)
     
     self.assertAlmostEqual(nec_gain_max(nec,0),5.076,3)
     
