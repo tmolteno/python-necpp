@@ -38,10 +38,10 @@ nec_headers.extend(glob("../necpp_src/config.h"))
 #
 necpp_module = Extension('_PyNEC',
     sources=nec_sources,
-    #swig_opts=['-v', '-I../src/', '-dhtml'],
     include_dirs=[np.get_include(), '../necpp_src/src', '../necpp_src/'],
     extra_compile_args = ['-fPIC'],
-    extra_link_args = ['-shared', '-lstdc++'],
+    # extra_link_args = ['-shared', '-lstdc++'],
+    extra_link_args = ['-lstdc++'],
     depends=nec_headers,
     define_macros=[('BUILD_PYTHON', '1'), ('NPY_NO_DEPRECATED_API','NPY_1_7_API_VERSION')]
     )
