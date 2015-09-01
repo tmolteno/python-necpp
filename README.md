@@ -1,4 +1,4 @@
-# #python-necpp: Antenna simulation in python
+# python-necpp: Antenna simulation in python
 
 This module allows you to do antenna simulations in Python using the nec2++ antenna
 simulation package. This is a wrapper using SWIG of the C interface, so the syntax
