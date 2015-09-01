@@ -19,9 +19,13 @@ be installed in the main part of the necpp code distribution.
 
 This is included as a git submodule
 
-    git submodule add git@github.com:tmolteno/necpp necpp
-    
-    cd necpp; make -f Makefile.git; ./configure --without-lapack
+    git clone https://github.com/tmolteno/python-necpp.git
+    git submodule init
+    git submodule update --remote
+
+To update the submodule to the latest necpp
+
+    git submodule update --remote
 
 ### Converting from MarkDown
 
@@ -38,6 +42,5 @@ This will run SWIG a source distribution tarball
 ### Uploading to PyPI.
 
 http://peterdowns.com/posts/first-time-with-pypi.html
-
 
     python setup.py sdist upload -r pypitest

@@ -2,10 +2,17 @@
 
 This module allows you to do antenna simulations in Python using the nec2++ antenna
 simulation package. This is a wrapper using SWIG of the C interface, so the syntax
-is quite simple. Have a look at the file test.py, for an example of how this 
+is quite simple. Have a look at the file necpp_src/example/test.py, for an example of how this 
 library can be used.
 
 Tim Molteno. tim@physics.otago.ac.nz
+
+## NEWS
+
+* Version 1.7.0 includes support for getting elements of radiation patterns. At the moment
+  this is just through the function nec_get_gain().
+* Version 1.7.0.3 includes nec_medium_parameters(). You could simulate an antenna in seawater!
+
 
 ## Install
 
@@ -13,6 +20,11 @@ As of version 1.6.1.2 swig is no longer required for installation. Simply use PI
 follows:
 
     pip install necpp
+
+## Documentation
+
+Try help(necpp) to list the available functions. The functions available are documented in the C-style API of nec2++. 
+This is [available here](http://tmolteno.github.io/necpp/libnecpp_8h.html)
 
 ## Using
 
