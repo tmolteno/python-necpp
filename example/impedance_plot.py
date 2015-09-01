@@ -22,5 +22,6 @@ plt.xlabel("Antenna length (m)")
 plt.ylabel("Reflection coefficient")
 plt.title("Reflection coefficient vs length (base_height=0.5m)")
 plt.grid(True)
+plt.show()
 plt.savefig("reflection_coefficient.png")
 
