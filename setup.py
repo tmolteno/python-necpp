@@ -26,19 +26,10 @@ nec_headers.extend(glob("necpp_src/config.h"))
 #
 necpp_module = Extension('_necpp',
     sources=nec_sources,
-#    swig_opts=['-v', '-Inecpp_src/src/', '-dhtml'],
     include_dirs=['necpp_src/src/', 'necpp_src/'],
     depends=nec_headers,
     define_macros=[('BUILD_PYTHON', '1')]
     )
-
-# 
-#   
-#necpp_module = Extension('_necpp',
-                           #sources=['necpp_wrap.c'],
-                           #include_dirs=['/usr/local/include'],
-                           #libraries=['necpp']
-                           #)
 
 
 setup (name = 'necpp',
