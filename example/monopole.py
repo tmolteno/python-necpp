@@ -25,6 +25,7 @@ def geometry(freq, base, length):
   handle_nec(nec_fr_card(nec, 0, 1, freq, 0))
   # Voltage excitation one third of the way along the wire
   handle_nec(nec_ex_card(nec, 0, 0, n_seg/3, 0, 1.0, 0, 0, 0, 0, 0)) 
+
   return nec
 
 def impedance(freq, base, length):
