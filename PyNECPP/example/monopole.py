@@ -3,6 +3,9 @@
 #  pip install necpp
 #
 from PyNEC import *
+
+from context_clean import *
+
 import math
 
 def geometry(freq, base, length):
@@ -13,17 +16,19 @@ def geometry(freq, base, length):
   wavelength = 3e8/(1e6*freq)
   n_seg = int(math.ceil(50*length/wavelength))
 
-  nec = nec_context()
+  nec = context_clean(nec_context())
 
   geo = nec.get_geometry()
   geo.wire(1, n_seg, 0, 0, base, 0, 0, base+length, 0.002, 1.0, 1.0)
   nec.geometry_complete(1)
 
-  nec.ld_card(5, 0, 0, 0, conductivity, 0.0, 0.0)
-  nec.gn_card(0, 0, ground_dielectric, ground_conductivity, 0, 0, 0, 0)
-  nec.fr_card(0, 1, freq, 0)
+  nec.set_all_wires_conductivity(conductivity)
+
+  nec.set_finite_ground(ground_dielectric, ground_conductivity)
+  nec.set_frequency(freq)
+
   # Voltage excitation one third of the way along the wire
-  nec.ex_card(0, 0, n_seg/3, 0, 1.0, 0, 0, 0, 0, 0)
+  nec.voltage_excitation(wire_tag=1, segment_nr=int(n_seg/3), voltage=1.0)
 
   return nec
 
