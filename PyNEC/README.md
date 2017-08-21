@@ -1,69 +1,63 @@
-# Python NEC2++ Module
+# python-necpp: Antenna simulation in python
 
-This module wraps the C++ API for antenna simulation of nec2++. It is easier to work with, and more powerful
-than the C-style API wrapper.
+This module allows you to do antenna simulations in Python using the nec2++ antenna
+simulation package. This is a wrapper using SWIG of the C interface, so the syntax
+is quite simple. Have a look at the file necpp_src/example/test.py, for an example of how this 
+library can be used.
 
+Tim Molteno. tim@physics.otago.ac.nz
 
-## Usage
+## NEWS
 
-Here is an example that plots a radiation pattern.
+* Version 1.7.0 includes support for getting elements of radiation patterns. At the moment
+  this is just through the function nec_get_gain().
+* Version 1.7.0.3 includes nec_medium_parameters(). You could simulate an antenna in seawater!
 
-    from PyNEC import *
-    import numpy as np
-
-    #creation of a nec context
-    context=nec_context()
-
-    #get the associated geometry
-    geo = context.get_geometry()
-
-    #add wires to the geometry
-    geo.wire(0, 36, 0, 0, 0, -0.042, 0.008, 0.017, 0.001, 1.0, 1.0)
-    context.geometry_complete(0)
-
-    context.gn_card(-1, 0, 0, 0, 0, 0, 0, 0)
-
-    #add a "ex" card to specify an excitation
-    context.ex_card(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
-
-    #add a "fr" card to specify the frequency 
-    context.fr_card(0, 2, 2400.0e6, 100.0e6)
-
-    #add a "rp" card to specify radiation pattern sampling parameters and to cause program execution
-    context.rp_card(0, 91, 1, 0, 5, 0, 0, 0.0, 45.0, 4.0, 2.0, 1.0, 0.0)
-
-    #get the radiation_pattern
-    rp = context.get_radiation_pattern(0)
-
-    # Gains are in decibels
-    gains_db = rp.get_gain()
-    gains = 10.0**(gains_db / 10.0)
-    thetas = rp.get_theta_angles() * 3.1415 / 180.0
-    phis = rp.get_phi_angles() * 3.1415 / 180.0
-
-
-    # Plot stuff
-    import matplotlib.pyplot as plt
-
-    ax = plt.subplot(111, polar=True)
-    ax.plot(thetas, gains[:,0], color='r', linewidth=3)
-    ax.grid(True)
-
-    ax.set_title("Gain at an elevation of 45 degrees", va='bottom')
-    plt.savefig('RadiationPattern.png')
-    plt.show()
 
 ## Install
 
-    git clone https://github.com/tmolteno/python-necpp.git
-    cd python-necpp
-    git submodule init
-    git submodule update --remote
-    cd PyNEC
-    ./build.sh
-    sudo python setup.py install
+As of version 1.6.1.2 swig is no longer required for installation. Simply use PIP as 
+follows:
 
-## Testing
+    pip install necpp
 
-    python example/test_rp.py
+## Documentation
 
+Try help(necpp) to list the available functions. The functions available are documented in the C-style API of nec2++. 
+This is [available here](http://tmolteno.github.io/necpp/libnecpp_8h.html)
+
+## Using
+
+The following code calculates the impedance of a simple vertical monopole antenna
+over a perfect ground. 
+
+    import necpp
+
+    def handle_nec(result):
+      if (result != 0):
+        print necpp.nec_error_message()
+
+    def impedance(frequency, z0, height):
+      
+      nec = necpp.nec_create()
+      handle_nec(necpp.nec_wire(nec, 1, 17, 0, 0, z0, 0, 0, z0+height, 0.1, 1, 1))
+      handle_nec(necpp.nec_geometry_complete(nec, 1, 0))
+      handle_nec(necpp.nec_gn_card(nec, 1, 0, 0, 0, 0, 0, 0, 0))
+      handle_nec(necpp.nec_fr_card(nec, 0, 1, frequency, 0))
+      handle_nec(necpp.nec_ex_card(nec, 0, 0, 1, 0, 1.0, 0, 0, 0, 0, 0)) 
+      handle_nec(necpp.nec_rp_card(nec, 0, 90, 1, 0,5,0,0, 0, 90, 1, 0, 0, 0))
+      result_index = 0
+      
+      z = complex(necpp.nec_impedance_real(nec,result_index), 
+                  necpp.nec_impedance_imag(nec,result_index))
+      
+      necpp.nec_delete(nec)
+      return z
+
+    if (__name__ == 'main'):
+      z = impedance(frequency = 34.5, z0 = 0.5, height = 4.0)
+      print "Impedance \t(%6.1f,%+6.1fI) Ohms" % (z.real, z.imag)
+
+## More Information
+      
+Have a look at [http://github.com/tmolteno/necpp] for more information on using nec2++.

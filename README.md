@@ -1,63 +1,18 @@
 # python-necpp: Antenna simulation in python
 
-This module allows you to do antenna simulations in Python using the nec2++ antenna
-simulation package. This is a wrapper using SWIG of the C interface, so the syntax
-is quite simple. Have a look at the file necpp_src/example/test.py, for an example of how this 
-library can be used.
+This repository contains two wrappers for the nec2++ antenna simulation package:
 
-Tim Molteno. tim@physics.otago.ac.nz
+* PyNEC/ contains a wrapper using SWIG of the C interface (Python module name: necpp).
+* PyNECPP/ contains a wrapper of the C++ interfaces (Python module name: PyNEC). The example/ directory furthermore contains some nicer, more readable Python wrappers that make toying around with NEC a less painful experience.
 
-## NEWS
+Both are based on Tim Molteno (tim@physics.otago.ac.nz)'s code.
 
-* Version 1.7.0 includes support for getting elements of radiation patterns. At the moment
-  this is just through the function nec_get_gain().
-* Version 1.7.0.3 includes nec_medium_parameters(). You could simulate an antenna in seawater!
+Personally, I (Bart Coppens, kde@bartcoppens.be) am more interested in a slightly cleaned-up version of the C++ interface wrappers. (I might still rename the Python module names to match the directory names, or rename the directories, or both). In particular, as mentioned above, PyNECPP/example contains context_clean.py, which separates some of the NEC cards with multiple options into multiple functions (with named arguments that make sense, rather than itmp1, itmp2, etc). I've only really done this for the code I was playing around with in the example/ subdirectory, though, lots of cards (and sub-functionalities of cards) remain unwrapped/unported. Still, I found it to be nicer.
 
+The PyNECPP/example directory contains the following additional examples (that are inspired by excercises from a course on antennas):
+* logperiodic_opt.py is an example on how to combine PyNECPP with scipy.optimize to use a genetic algorithm to **optimize an antenna for multiple frequency bands** at the same time (which I thin is not possible in 4nec2). The resulting gains and VSWR are plotted over the frequency range of interest. This requires scipy >= 0.15.0 due to the usage of scipy.optimize.differential_evolution.
+* monopole_realistic_ground_plane.py plots the vertical gain pattern of a monopole antenna. Its dimensions are optimized with a local search, and the path through the search space is visualized with a heat map.
+* dipole.py does a very simple optimization of a dipole, and plots the VSWR over a given frequency range for different system impedances to file.
 
-## Install
-
-As of version 1.6.1.2 swig is no longer required for installation. Simply use PIP as 
-follows:
-
-    pip install necpp
-
-## Documentation
-
-Try help(necpp) to list the available functions. The functions available are documented in the C-style API of nec2++. 
-This is [available here](http://tmolteno.github.io/necpp/libnecpp_8h.html)
-
-## Using
-
-The following code calculates the impedance of a simple vertical monopole antenna
-over a perfect ground. 
-
-    import necpp
-
-    def handle_nec(result):
-      if (result != 0):
-        print necpp.nec_error_message()
-
-    def impedance(frequency, z0, height):
-      
-      nec = necpp.nec_create()
-      handle_nec(necpp.nec_wire(nec, 1, 17, 0, 0, z0, 0, 0, z0+height, 0.1, 1, 1))
-      handle_nec(necpp.nec_geometry_complete(nec, 1, 0))
-      handle_nec(necpp.nec_gn_card(nec, 1, 0, 0, 0, 0, 0, 0, 0))
-      handle_nec(necpp.nec_fr_card(nec, 0, 1, frequency, 0))
-      handle_nec(necpp.nec_ex_card(nec, 0, 0, 1, 0, 1.0, 0, 0, 0, 0, 0)) 
-      handle_nec(necpp.nec_rp_card(nec, 0, 90, 1, 0,5,0,0, 0, 90, 1, 0, 0, 0))
-      result_index = 0
-      
-      z = complex(necpp.nec_impedance_real(nec,result_index), 
-                  necpp.nec_impedance_imag(nec,result_index))
-      
-      necpp.nec_delete(nec)
-      return z
-
-    if (__name__ == 'main'):
-      z = impedance(frequency = 34.5, z0 = 0.5, height = 4.0)
-      print "Impedance \t(%6.1f,%+6.1fI) Ohms" % (z.real, z.imag)
-
-## More Information
-      
-Have a look at [http://github.com/tmolteno/necpp] for more information on using nec2++.
+## TODOs
+The cleaner API should really be **ported to C++**, so the clean wrappers get automatically generated, and C++ can use the same cleaner interface. But for now, I'm happy with the Python wrapper :)
