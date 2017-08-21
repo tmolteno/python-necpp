@@ -4,7 +4,7 @@ PyPI module for nec2++
 This module allows you to do antenna simulations in Python using the nec2++ antenna
 simulation package. This is a wrapper using SWIG of the C interface, so the syntax
 is quite simple. Have a look at the file test.py, for an example of how this 
-library can be used.
+library can be used. Other examples are in the 'examples' directory.
 
 ### Author
 
@@ -30,6 +30,8 @@ To update the submodule to the latest necpp
 ### Converting from MarkDown
 
     sudo aptitude install pandoc swig
+    
+    pandoc --to=rst  README.md > README.txt
 
 ### Testing
 

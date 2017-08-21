@@ -1,7 +1,9 @@
 # python-necpp: Antenna simulation in python
 
 This module allows you to do antenna simulations in Python using the nec2++ antenna
-simulation package. This is a wrapper using SWIG of the C interface, so the syntax
+simulation package. 
+
+This is a wrapper using SWIG of the C interface, so the syntax
 is quite simple. Have a look at the file necpp_src/example/test.py, for an example of how this 
 library can be used.
 
@@ -9,9 +11,11 @@ Tim Molteno. tim@physics.otago.ac.nz
 
 ## NEWS
 
+* Version 1.7.3 Includes Python3 support. Also some bug fixes and updating nec++ to the 
+  latest version.
+* Version 1.7.0.3 includes nec_medium_parameters(). You could simulate an antenna in seawater!
 * Version 1.7.0 includes support for getting elements of radiation patterns. At the moment
   this is just through the function nec_get_gain().
-* Version 1.7.0.3 includes nec_medium_parameters(). You could simulate an antenna in seawater!
 
 
 ## Install

@@ -31,14 +31,17 @@ necpp_module = Extension('_necpp',
     define_macros=[('BUILD_PYTHON', '1')]
     )
 
+with open('README.txt') as f:
+    readme = f.read()
 
 setup (name = 'necpp',
-    version = '1.7.3',
+    version = '1.7.3.2',
     author  = "Tim Molteno",
     author_email  = "tim@physics.otago.ac.nz",
     url  = "http://github.com/tmolteno/necpp",
     keywords = "nec2 nec2++ antenna electromagnetism radio",
     description = "Python Antenna Simulation Module (nec2++) C-style interface",
+    long_description=readme,
     data_files=[('examples', ['../necpp_src/example/test.py'])],
     ext_modules = [necpp_module],
     py_modules = ["necpp"],
