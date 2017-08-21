@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-setup.py file for necpp Python module
+setup.py file for necpp Python module. 
 """
 
 from distutils.core import setup, Extension
@@ -33,20 +33,26 @@ necpp_module = Extension('_necpp',
 
 
 setup (name = 'necpp',
-       version = '1.7.3',
-       author  = "Tim Molteno",
-       author_email  = "tim@physics.otago.ac.nz",
-       url  = "http://github.com/tmolteno/necpp",
-       keywords = "nec2 nec2++ antenna electromagnetism radio",
-       description = "Python Antenna Simulation Module (nec2++) C-style interface",
-       data_files=[('examples', ['necpp_src/example/test.py'])],
-       ext_modules = [necpp_module],
-       py_modules = ["necpp"],
-       license='GPLv2',
-       classifiers=[
-          "Development Status :: 5 - Production/Stable",
-          "Topic :: Scientific/Engineering",
-          "Topic :: Communications :: Ham Radio",
-          "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
-          "Intended Audience :: Science/Research"]
-       )
+    version = '1.7.3',
+    author  = "Tim Molteno",
+    author_email  = "tim@physics.otago.ac.nz",
+    url  = "http://github.com/tmolteno/necpp",
+    keywords = "nec2 nec2++ antenna electromagnetism radio",
+    description = "Python Antenna Simulation Module (nec2++) C-style interface",
+    data_files=[('examples', ['../necpp_src/example/test.py'])],
+    ext_modules = [necpp_module],
+    py_modules = ["necpp"],
+    license='GPLv2',
+    classifiers=[
+    "Development Status :: 5 - Production/Stable",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Communications :: Ham Radio",
+    "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    'Programming Language :: Python :: 2',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+    "Intended Audience :: Science/Research"]
+)
