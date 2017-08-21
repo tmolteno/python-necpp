@@ -1,19 +1,12 @@
 #!/bin/bash
-#
-# Build script for the PyNEC module. 
-#
-# Author. Tim Molteno.
-#
+# Script to build the nec2++ python module.
 git submodule update --remote
-# 
 pushd ../necpp_src
 make -f Makefile.git
 ./configure --without-lapack
 popd
-
-# Generate a README.txt from README.md
 pandoc -o README.txt README.md
-
-# Build PyNEC
-swig -Wall -v -c++ -python PyNEC.i
+PYTHON=python
+swig -v -I../necpp_src/src/ -python necpp.i
 python setup.py build
+#sudo python setup.py install
