@@ -27,5 +27,4 @@ log_base, log_length = scipy.optimize.fmin(target, x0)
 base_height = np.exp(log_base)
 length = np.exp(log_length)
 
-print "Optimium base_height=%fm, h=%fm, impedance=%s Ohms" % \
-  (base_height, length, monopole.impedance(freq, base_height, length))
+print("Optimium base_height={}m, h={}m, impedance={} Ohms".format(base_height, length, monopole.impedance(freq, base_height, length)))

@@ -7,7 +7,7 @@ import math
 
 def handle_nec(result):
   if (result != 0):
-    print nec_error_message()
+    print(nec_error_message())
 
 def geometry(freq, base, length):
   
@@ -24,7 +24,7 @@ def geometry(freq, base, length):
   handle_nec(nec_gn_card(nec, 0, 0, ground_dielectric, ground_conductivity, 0, 0, 0, 0))
   handle_nec(nec_fr_card(nec, 0, 1, freq, 0))
   # Voltage excitation one third of the way along the wire
-  handle_nec(nec_ex_card(nec, 0, 0, n_seg/3, 0, 1.0, 0, 0, 0, 0, 0)) 
+  handle_nec(nec_ex_card(nec, 0, 0, int(n_seg/3), 0, 1.0, 0, 0, 0, 0, 0)) 
 
   return nec
 
@@ -38,4 +38,4 @@ def impedance(freq, base, length):
 
 if (__name__ == '__main__'):
   z = impedance(freq = 134.5, base = 0.5, length = 4.0)
-  print "Impedance at base=%0.2f, length=%0.2f : (%6.1f,%+6.1fI) Ohms" % (0.5, 4.0, z.real, z.imag)
+  print("Impedance at base=%0.2f, length=%0.2f : (%6.1f,%+6.1fI) Ohms" % (0.5, 4.0, z.real, z.imag))
