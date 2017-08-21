@@ -32,6 +32,9 @@ nec_headers = []
 nec_headers.extend(glob("../necpp_src/src/*.h"))
 nec_headers.extend(glob("../necpp_src/config.h"))
 
+with open('README.txt') as f:
+    readme = f.read()
+
 
 # At the moment, the config.h file is needed, and this should be generated from the ./configure
 # command in the parent directory. Use ./configure --without-lapack to avoid dependance on LAPACK
@@ -48,21 +51,22 @@ necpp_module = Extension('_PyNEC',
 
 
 setup (name = 'PyNEC',
-       version = '1.7.3',
-       author  = "Tim Molteno",
-       author_email  = "tim@physics.otago.ac.nz",
-       url  = "http://github.com/tmolteno/necpp",
-       keywords = "nec2 nec2++ antenna electromagnetism radio",
-       description = "Python Antenna Simulation Module (nec2++) object-oriented interface",
-       data_files=[('examples', ['example/test_rp.py'])],
-       ext_modules = [necpp_module],
-       requires = ['numpy'],
-       py_modules = ["PyNEC"],
-       license='GPLv2',
-       classifiers=[
-          "Development Status :: 5 - Production/Stable",
-          "Topic :: Scientific/Engineering",
-          "Topic :: Communications :: Ham Radio",
-          "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
-          "Intended Audience :: Science/Research"]
+    version = '1.7.3.1',
+    author  = "Tim Molteno",
+    author_email  = "tim@physics.otago.ac.nz",
+    url  = "http://github.com/tmolteno/necpp",
+    keywords = "nec2 nec2++ antenna electromagnetism radio",
+    description = "Python Antenna Simulation Module (nec2++) object-oriented interface",
+    long_description=readme,
+    data_files=[('examples', ['example/test_rp.py'])],
+    ext_modules = [necpp_module],
+    requires = ['numpy'],
+    py_modules = ["PyNEC"],
+    license='GPLv2',
+    classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "Topic :: Scientific/Engineering",
+        "Topic :: Communications :: Ham Radio",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+        "Intended Audience :: Science/Research"]
 )

@@ -3,14 +3,6 @@
 This module wraps the C++ API for antenna simulation of nec2++. It is easier to work with, and more powerful
 than the C-style API wrapper.
 
-
-The example directory contains the following additional examples (that are inspired by excercises from a course on antennas):
-
-* logperiodic_opt.py is an example on how to combine PyNECPP with scipy.optimize to use a genetic algorithm to **optimize an antenna for multiple frequency bands** at the same time (which I thin is not possible in 4nec2). The resulting gains and VSWR are plotted over the frequency range of interest. This requires scipy >= 0.15.0 due to the usage of scipy.optimize.differential_evolution.
-* monopole_realistic_ground_plane.py plots the vertical gain pattern of a monopole antenna. Its dimensions are optimized with a local search, and the path through the search space is visualized with a heat map.
-* dipole.py does a very simple optimization of a dipole, and plots the VSWR over a given frequency range for different system impedances to file.
-
-
 ## Usage
 
 Here is an example that plots a radiation pattern.
@@ -73,4 +65,12 @@ Here is an example that plots a radiation pattern.
 ## Testing
 
     python example/test_rp.py
+
+    
+The example directory contains the following additional examples (that are inspired by excercises from a course on antennas):
+
+* logperiodic_opt.py is an example on how to combine PyNECPP with scipy.optimize to use a genetic algorithm to **optimize an antenna for multiple frequency bands** at the same time (which I thin is not possible in 4nec2). The resulting gains and VSWR are plotted over the frequency range of interest. This requires scipy >= 0.15.0 due to the usage of scipy.optimize.differential_evolution.
+* monopole_realistic_ground_plane.py plots the vertical gain pattern of a monopole antenna. Its dimensions are optimized with a local search, and the path through the search space is visualized with a heat map.
+* dipole.py does a very simple optimization of a dipole, and plots the VSWR over a given frequency range for different system impedances to file.
+
 
