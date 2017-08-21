@@ -46,8 +46,8 @@ necpp_module = Extension('_PyNEC',
     )
 
 
-<<<<<<< HEAD:setup.py
-setup (name = 'necpp',
+
+setup (name = 'PyNEC',
        version = '1.7.3',
        author  = "Tim Molteno",
        author_email  = "tim@physics.otago.ac.nz",
@@ -65,4 +65,4 @@ setup (name = 'necpp',
           "Topic :: Communications :: Ham Radio",
           "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
           "Intended Audience :: Science/Research"]
-       )
+)
