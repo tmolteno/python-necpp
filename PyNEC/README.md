@@ -1,7 +1,7 @@
 # Python NEC2++ Module
 
-This module wraps the C++ API for antenna simulation of nec2++. It is easier to work with, and more powerful
-than the C-style API wrapper.
+This module wraps the C++ API for antenna simulation of nec2++. It is easier to work with, and more powerful than the C-style API wrapper. Works with Python 2.7 and 3+.
+
 
 ## Usage
 
@@ -52,21 +52,42 @@ Here is an example that plots a radiation pattern.
     plt.savefig('RadiationPattern.png')
     plt.show()
 
+## Build
+
+Requirements
+
+* [Pandoc](https://pandoc.org/)
+* [Swig](http://www.swig.org/)
+* configure & make
+* pip 
+* setuptools
+* wheel
+*Note: For Windows: Compling requires [C/C++ compliers](https://wiki.python.org/moin/WindowsCompilers). Also, add the path to swig.exe to environment.*
+
+    
+        $ git clone --recursive https://github.com/tmolteno/python-necpp.git
+        $ cd python-necpp
+        $ cd PyNEC
+        $ ./build.sh
+        $ python setup.py bdist_wheel
+        $ sudo python setup.py install
+    
+    *Note: sudo is not required in windows.*
+    
 ## Install
 
-    git clone https://github.com/tmolteno/python-necpp.git
-    cd python-necpp
-    git submodule init
-    git submodule update --remote
-    cd PyNEC
-    ./build.sh
-    sudo python setup.py install
+    $ sudo pip install pynec
+   *Note: sudo is not required in windows.*
 
 ## Testing
 
-    python example/test_rp.py
+Requirements
 
-    
+* matplotlib
+
+    $ python example/test_rp.py
+
+   
 The example directory contains the following additional examples (that are inspired by excercises from a course on antennas):
 
 * logperiodic_opt.py is an example on how to combine PyNECPP with scipy.optimize to use a genetic algorithm to **optimize an antenna for multiple frequency bands** at the same time (which I thin is not possible in 4nec2). The resulting gains and VSWR are plotted over the frequency range of interest. This requires scipy >= 0.15.0 due to the usage of scipy.optimize.differential_evolution.

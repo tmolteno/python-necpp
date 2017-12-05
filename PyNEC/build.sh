@@ -5,7 +5,8 @@
 # Author. Tim Molteno.
 #
 git submodule update --remote
-# 
+
+# In windows this generates error since, the make, configure,libtoolize shows ignorable error
 pushd ../necpp_src
 make -f Makefile.git
 ./configure --without-lapack
