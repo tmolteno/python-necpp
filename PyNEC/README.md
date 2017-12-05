@@ -52,32 +52,33 @@ Here is an example that plots a radiation pattern.
     plt.savefig('RadiationPattern.png')
     plt.show()
 
-## Build
+## Manual Build & install
 
 Requirements
 
-* [Pandoc](https://pandoc.org/)
+* [Pandoc](https://pandoc.org/) 
 * [Swig](http://www.swig.org/)
 * configure & make
 * pip 
 * setuptools
 * wheel
-*Note: For Windows: Compling requires [C/C++ compliers](https://wiki.python.org/moin/WindowsCompilers). Also, add the path to swig.exe to environment.*
+
+*Note: For Windows: Building requires [C/C++ compliers](https://wiki.python.org/moin/WindowsCompilers). Download and extract swigwin.zip and add the path to swig.exe to environment.*
 
     
         $ git clone --recursive https://github.com/tmolteno/python-necpp.git
         $ cd python-necpp
         $ cd PyNEC
         $ ./build.sh
-        $ python setup.py bdist_wheel
         $ sudo python setup.py install
     
-    *Note: sudo is not required in windows.*
+    *Note: 1) For windows: sudo is not required. 2) For generating wheels, use `$ python setup.py bdist_wheel`*
     
-## Install
+## Install from PyPI
 
     $ sudo pip install pynec
-   *Note: sudo is not required in windows.*
+    
+   *Note: sudo is not required in windows. *
 
 ## Testing
 
