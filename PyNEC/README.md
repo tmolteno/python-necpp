@@ -56,39 +56,40 @@ Here is an example that plots a radiation pattern.
 
 Requirements
 
-* [Pandoc](https://pandoc.org/) 
-* [Swig](http://www.swig.org/)
-* configure & make
-* pip 
-* setuptools
-* wheel
+* [Pandoc](https://pandoc.org/installing.html) 
+* [Swig](http://www.swig.org/download.html)
+* For Windows: [C/C++ compilers](https://wiki.python.org/moin/WindowsCompilers).
+* Git bash (for running build.sh script)
+* Latest python packages: pip, setuptools, numpy, wheel, numpy. Run: 
+`$ pip install --upgrade pip setuptools wheel numpy`
 
-*Note: For Windows: Building requires [C/C++ compliers](https://wiki.python.org/moin/WindowsCompilers). Download and extract swigwin.zip and add the path to swig.exe to environment.*
+*Note: Download and extract swigwin.zip and add the path to swig.exe to environment.*
 
+Then do following:
     
         $ git clone --recursive https://github.com/tmolteno/python-necpp.git
         $ cd python-necpp
         $ cd PyNEC
         $ ./build.sh
+		$ python setup.py bdist_wheel (For generating wheel, requires wheel package)
         $ sudo python setup.py install
     
-    *Note: 1) For windows: sudo is not required. 2) For generating wheels, use `$ python setup.py bdist_wheel`*
+*Note: 'sudo' is not required in windows.*
     
 ## Install from PyPI
 
     $ sudo pip install pynec
     
-   *Note: sudo is not required in windows. *
+*Note: 'sudo' is not required in windows.*
 
 ## Testing
 
 Requirements
 
-* matplotlib
+* python package: matplotlib
 
     $ python example/test_rp.py
 
-   
 The example directory contains the following additional examples (that are inspired by excercises from a course on antennas):
 
 * logperiodic_opt.py is an example on how to combine PyNECPP with scipy.optimize to use a genetic algorithm to **optimize an antenna for multiple frequency bands** at the same time (which I thin is not possible in 4nec2). The resulting gains and VSWR are plotted over the frequency range of interest. This requires scipy >= 0.15.0 due to the usage of scipy.optimize.differential_evolution.
