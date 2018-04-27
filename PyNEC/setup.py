@@ -21,7 +21,7 @@ for key, value in cfg_vars.items():
 
 # Generate a list of the sources.   
 nec_sources = []
-nec_sources.extend([fn for fn in glob('../necpp_src/src/*.cpp') 
+nec_sources.extend([fn for fn in glob('necpp_src/src/*.cpp') 
          if not os.path.basename(fn).endswith('_tb.cpp')
          if not os.path.basename(fn).startswith('net_solve.cpp')
          if not os.path.basename(fn).startswith('nec2cpp.cpp')
@@ -29,8 +29,8 @@ nec_sources.extend([fn for fn in glob('../necpp_src/src/*.cpp')
 nec_sources.extend(glob("PyNEC_wrap.cxx"))
 
 nec_headers = []
-nec_headers.extend(glob("../necpp_src/src/*.h"))
-nec_headers.extend(glob("../necpp_src/config.h"))
+nec_headers.extend(glob("necpp_src/src/*.h"))
+nec_headers.extend(glob("necpp_src/config.h"))
 
 with open('README.txt') as f:
     readme = f.read()
@@ -41,7 +41,7 @@ with open('README.txt') as f:
 #
 necpp_module = Extension('_PyNEC',
     sources=nec_sources,
-    include_dirs=[np.get_include(), '../necpp_src/src', '../necpp_src/'],
+    include_dirs=[np.get_include(), 'necpp_src/src', 'necpp_src/'],
     extra_compile_args = ['-fPIC'],
     extra_link_args = ['-lstdc++'],
     depends=nec_headers,
@@ -51,7 +51,7 @@ necpp_module = Extension('_PyNEC',
 
 
 setup (name = 'PyNEC',
-    version = '1.7.3.1',
+    version = '1.7.3.3',
     author  = "Tim Molteno",
     author_email  = "tim@physics.otago.ac.nz",
     url  = "http://github.com/tmolteno/necpp",

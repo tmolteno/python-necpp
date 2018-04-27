@@ -6,7 +6,8 @@
 #
 git submodule update --remote
 # 
-pushd ../necpp_src
+ln -s ../necpp_src .
+pushd necpp_src
 make -f Makefile.git
 ./configure --without-lapack
 popd
