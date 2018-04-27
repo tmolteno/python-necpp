@@ -9,7 +9,7 @@ from glob import glob
 import os
 
 nec_sources = []
-nec_sources.extend([fn for fn in glob('../necpp_src/src/*.cpp')
+nec_sources.extend([fn for fn in glob('necpp_src/src/*.cpp')
          if not os.path.basename(fn).endswith('_tb.cpp')
          if not os.path.basename(fn).startswith('net_solve.cpp')
          if not os.path.basename(fn).startswith('nec2cpp.cpp')
@@ -17,8 +17,8 @@ nec_sources.extend([fn for fn in glob('../necpp_src/src/*.cpp')
 nec_sources.extend(glob("necpp_wrap.c"))
 
 nec_headers = []
-nec_headers.extend(glob("../necpp_src/src/*.h"))
-nec_headers.extend(glob("../necpp_src/config.h"))
+nec_headers.extend(glob("necpp_src/src/*.h"))
+nec_headers.extend(glob("necpp_src/config.h"))
 
 
 # At the moment, the config.h file is needed, and this should be generated from the ./configure
@@ -26,7 +26,7 @@ nec_headers.extend(glob("../necpp_src/config.h"))
 #
 necpp_module = Extension('_necpp',
     sources=nec_sources,
-    include_dirs=['../necpp_src/src/', '../necpp_src/'],
+    include_dirs=['necpp_src/src/', 'necpp_src/'],
     depends=nec_headers,
     define_macros=[('BUILD_PYTHON', '1')]
     )
@@ -35,7 +35,7 @@ with open('README.txt') as f:
     readme = f.read()
 
 setup (name = 'necpp',
-    version = '1.7.3.2',
+    version = '1.7.3.3',
     author  = "Tim Molteno",
     author_email  = "tim@physics.otago.ac.nz",
     url  = "http://github.com/tmolteno/necpp",
