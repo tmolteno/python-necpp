@@ -1,6 +1,6 @@
 #
 #  Simple vertical monopole antenna simulation using python-necpp
-#  pip install necpp
+#  pip install PyNEC
 #
 from PyNEC import *
 

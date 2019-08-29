@@ -49,7 +49,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
     
 setuptools.setup (name = 'PyNEC',
-    version = '1.7.3.4',
+    version = '1.7.3.5',
     author  = "Tim Molteno",
     author_email  = "tim@physics.otago.ac.nz",
     url  = "http://github.com/tmolteno/python-necpp",

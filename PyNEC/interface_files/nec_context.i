@@ -12,7 +12,39 @@ public:
   c_geometry* get_geometry();
 
   
+  /*! \brief Get the maximum gain in dB.
   
+  This function requires a previous rp_card() method to have been called (with gain normalization requested)
+  
+  \return The maximum gain in dB or -999.0 if no radiation pattern had been previously requested.
+  */
+  double get_gain(int freq_index, int theta_index, int phi_index);
+
+  double get_gain_max(int freq_index);
+  double get_gain_min(int freq_index);
+  double get_gain_mean(int freq_index); 
+  double get_gain_sd(int freq_index);
+  
+  /********************** RHCP ********************************/
+  double get_gain_rhcp_max(int freq_index);
+  double get_gain_rhcp_min(int freq_index);
+  double get_gain_rhcp_mean(int freq_index);
+  double get_gain_rhcp_sd(int freq_index);
+  
+  /********************** LHCP ********************************/
+  double get_gain_lhcp_max(int freq_index);
+  double get_gain_lhcp_min(int freq_index);
+  double get_gain_lhcp_mean(int freq_index);
+  double get_gain_lhcp_sd(int freq_index);
+  
+  /****************** IMPEDANCE CHARACTERISTICS *********************/
+  
+  /*! \brief Impedance: Real Part */
+  double get_impedance_real(int freq_index);
+  /*! \brief Impedance: Imaginary Part */
+  double get_impedance_imag(int freq_index);
+        
+        
   /*! Get the result antenna_input_parameters specified by index
   
           \param index The index of the requested result.
