@@ -3,3 +3,4 @@ build/**
 PyNEC.py
 *.cxx
 *.png
+necpp_src
