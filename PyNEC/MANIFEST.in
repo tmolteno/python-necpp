@@ -1,8 +1,8 @@
 include LICENCE.txt
 
-include ../necpp_src/src/*.h
+include necpp_src/src/*.h
 
-include ../necpp_src/config.h
+include necpp_src/config.h
 
 include example/*.py
 

@@ -1,12 +1,13 @@
 #!/bin/bash
 # Script to build the nec2++ python module.
 git submodule update --remote
-pushd ../necpp_src
+ln -s ../necpp_src .
+DIR=`pwd`
+cd necpp_src
 make -f Makefile.git
 ./configure --without-lapack
-popd
-pandoc -o README.txt README.md
-PYTHON=python
-swig -v -I../necpp_src/src/ -python necpp.i
-python setup.py build
+cd ${DIR}
+PYTHON=python3
+swig3.0 -v -Inecpp_src/src/ -python necpp.i
+python3 setup.py build
 #sudo python setup.py install
