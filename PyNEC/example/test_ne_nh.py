@@ -53,4 +53,4 @@ sc = context.get_structure_currents(0)
 ne = context.get_near_field_pattern(0)
 nh = context.get_near_field_pattern(1)
 
-print ne
+print(ne)

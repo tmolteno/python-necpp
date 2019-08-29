@@ -89,13 +89,13 @@ if (__name__ == '__main__'):
 
   initial_length = wavelength / 2 # TODO
 
-  print "Wavelength is %0.4fm, initial length is %0.4fm" % (wavelength, initial_length)
+  print("Wavelength is %0.4fm, initial length is %0.4fm" % (wavelength, initial_length))
 
   nr_segments = 101 # int(math.ceil(50*initial_length/wavelength))
 
   z = impedance(design_freq_mhz, initial_length, nr_segments)
 
-  print "Initial impedance: (%6.1f,%+6.1fI) Ohms" % (z.real, z.imag)
+  print("Initial impedance: (%6.1f,%+6.1fI) Ohms" % (z.real, z.imag))
 
   target = create_optimization_target(design_freq_mhz, nr_segments)
   optimized_result = scipy.optimize.minimize(target, np.array([initial_length]))
@@ -103,8 +103,8 @@ if (__name__ == '__main__'):
 
   z = impedance(design_freq_mhz, optimized_length, nr_segments)
 
-  print "Optimized length %6.6f m, which gives an impedance of: (%6.4f,%+6.4fI) Ohms" % (optimized_length, z.real, z.imag)
-  print "VSWR @ 75 Ohm is %6.6f" % vswr(z, 75)
+  print("Optimized length %6.6f m, which gives an impedance of: (%6.4f,%+6.4fI) Ohms" % (optimized_length, z.real, z.imag))
+  print("VSWR @ 75 Ohm is %6.6f" % vswr(z, 75))
 
   for system_impedance in [75, 50, 300]:
     nec = geometry(design_freq_mhz, optimized_length, nr_segments)
@@ -117,10 +117,10 @@ if (__name__ == '__main__'):
 
     rng = matched_range_around(nec, count, design_freq_mhz, system_impedance)
     if rng[0] is None or rng[1] is None:
-        print "VSWR is nowhere <= 2 @ %i Ohm!" % system_impedance
+        print("VSWR is nowhere <= 2 @ %i Ohm!" % system_impedance)
     else:
         bandwidth = 100.0 * (rng[1] - rng[0]) / design_freq_mhz
-        print "The fractional bandwidth @ %i Ohm is %2.2f%% - %i MHz (%i Mhz to %i MHz)" % (system_impedance, bandwidth, (rng[1] - rng[0]), rng[0], rng[1])
+        print("The fractional bandwidth @ %i Ohm is %2.2f%% - %i MHz (%i Mhz to %i MHz)" % (system_impedance, bandwidth, (rng[1] - rng[0]), rng[0], rng[1]))
 
     freqs = []
     vswrs = []
@@ -140,5 +140,5 @@ if (__name__ == '__main__'):
     plt.ylabel("VSWR")
     plt.grid(True)
     filename = "vswr_%i_MHz.pdf" % system_impedance
-    print "Saving plot to file: %s" % filename
+    print("Saving plot to file: %s" % filename)
     plt.savefig(filename)

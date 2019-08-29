@@ -19,7 +19,7 @@ do_debug = False
 def debug(card, *args):
     if do_debug:
         stringified = " , ".join([str(a) for a in args])
-        print "%s %s" % (card, stringified)
+        print("%s %s" % (card, stringified))
 
 class context_clean(object):
     def __init__(self, context):

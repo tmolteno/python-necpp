@@ -129,10 +129,10 @@ def create_optimization_target():
         result = vswr_score - gains_score
 
       except:
-          print "Caught exception"
+          print("Caught exception")
           return float('inf')
 
-      print result
+      print(result)
 
       return result
   return target
@@ -169,8 +169,8 @@ def show_report(l1, x1, tau):
 
     z = simulate_and_get_impedance(nec)
 
-    print "Initial impedance: (%6.1f,%+6.1fI) Ohms" % (z.real, z.imag)
-    print "VSWR @ 50 Ohm is %6.6f" % vswr(z, 50)
+    print("Initial impedance: (%6.1f,%+6.1fI) Ohms" % (z.real, z.imag))
+    print("VSWR @ 50 Ohm is %6.6f" % vswr(z, 50))
 
     nec = geometry_logperiodic(l1, x1, tau)
   
@@ -219,12 +219,12 @@ if (__name__ == '__main__'):
   initial_x1  = wavelength / 2
   initial_tau = 0.8
 
-  print "Wavelength is %0.4fm, initial length is %0.4fm" % (wavelength, initial_l1)
+  print("Wavelength is %0.4fm, initial length is %0.4fm" % (wavelength, initial_l1))
   
-  print "Unoptimized antenna..."
+  print("Unoptimized antenna...")
   show_report(initial_l1, initial_x1, initial_tau)
 
-  print "Optimizing antenna..."
+  print("Optimizing antenna...")
   target = create_optimization_target()
 
   # Optimize local minimum only with gradient desce
@@ -238,7 +238,7 @@ if (__name__ == '__main__'):
   # Basin hopping isn't so good, but could also have been an option:
   #optimized_result = scipy.optimize.basinhopping(target, np.array([initial_l1, initial_x1, initial_tau]), minimizer_kwargs=minimizer_kwargs, niter=5, stepsize=0.015, T=2.0, disp=True)
 
-  print "Optimized antenna..."
+  print("Optimized antenna...")
   optimized_l1, optimized_x1, optimized_tau =  optimized_result.x[0], optimized_result.x[1], optimized_result.x[2]
   show_report(optimized_l1, optimized_x1, optimized_tau)
 

@@ -92,7 +92,7 @@ def create_optimization_target(freq_mhz, nr_segments):
 
         nec.xq_card(0) # Execute simulation
       except:
-          print "Caught exception"
+          print("Caught exception")
           return float('inf')
 
       for idx in range(0, count):
@@ -122,7 +122,7 @@ def create_optimization_target(freq_mhz, nr_segments):
       sampled_ground_wire_lenths.append(ground_wire_length)
       sampled_results.append(result)
 
-      print result
+      print(result)
 
       return result
   return target
@@ -133,7 +133,7 @@ if (__name__ == '__main__'):
 
   initial_length = wavelength / 4 # quarter-wavelength monopole
 
-  print "Wavelength is %0.4fm, initial length is %0.4fm" % (wavelength, initial_length)
+  print("Wavelength is %0.4fm, initial length is %0.4fm" % (wavelength, initial_length))
 
   nr_segments = 15 # int(math.ceil(50*initial_length/wavelength))
   #print nr_segments
@@ -141,8 +141,8 @@ if (__name__ == '__main__'):
   ground_wire_length = 0.02
   z = simulate_and_get_impedance(geometry_monopole_ground(design_freq_mhz, initial_length, ground_wire_length, nr_segments))
 
-  print "Initial impedance: (%6.1f,%+6.1fI) Ohms" % (z.real, z.imag)
-  print "VSWR @ 50 Ohm is %6.6f" % vswr(z, 50)
+  print("Initial impedance: (%6.1f,%+6.1fI) Ohms" % (z.real, z.imag))
+  print("VSWR @ 50 Ohm is %6.6f" % vswr(z, 50))
 
   target = create_optimization_target(design_freq_mhz, nr_segments)
   optimized_result = scipy.optimize.minimize(target, np.array([initial_length, ground_wire_length]), method='Nelder-Mead')
@@ -152,9 +152,9 @@ if (__name__ == '__main__'):
   geo_opt = geometry_monopole_ground(design_freq_mhz, optimized_length, optimized_ground_wire_length, nr_segments)
   z = simulate_and_get_impedance(geo_opt)
 
-  print "Optimized length %6.6f m and ground screen radials of length %6.6f m, which gives an impedance of: (%6.4f,%+6.4fI) Ohms" % (optimized_length, optimized_ground_wire_length, z.real, z.imag)
-  print "Mismatch @ 50 Ohm is %6.6f" % mismatch(z, 50)
-  print "VSWR @ 50 Ohm is %6.6f" % vswr(z, 50)
+  print("Optimized length %6.6f m and ground screen radials of length %6.6f m, which gives an impedance of: (%6.4f,%+6.4fI) Ohms" % (optimized_length, optimized_ground_wire_length, z.real, z.imag))
+  print("Mismatch @ 50 Ohm is %6.6f" % mismatch(z, 50))
+  print("VSWR @ 50 Ohm is %6.6f" % vswr(z, 50))
 
   geo_opt = geometry_monopole_ground(design_freq_mhz, optimized_length, optimized_ground_wire_length, nr_segments)
   geo_opt.set_frequency(design_freq_mhz)
@@ -172,7 +172,7 @@ if (__name__ == '__main__'):
   max_gain = gains_db[max_idx]
   max_theta = thetas[max_idx]
   #print gains_db
-  print "Maximal gain is %2.2f dBi, at an angle of %2.2f" % (max_gain, max_theta * 180.0 / np.pi)
+  print("Maximal gain is %2.2f dBi, at an angle of %2.2f" % (max_gain, max_theta * 180.0 / np.pi))
 
   # Plot stuff
 

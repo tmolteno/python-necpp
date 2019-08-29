@@ -36,18 +36,18 @@ nec.xq_card(0) # Execute simulation
 
 ipt = nec.get_input_parameters(0)
 z = ipt.get_impedance()
-print("Impedance is {}".format(z))
+print(("Impedance is {}".format(z)))
 
 rpt = nec.get_radiation_pattern(0)
 
 complex_e_field = rpt.get_e_theta()
 e = complex_e_field.reshape((30,30))
 
-print(complex_e_field.size)
+print((complex_e_field.size))
 
 for t in range(30):
     for p in range(30):
         pass
-        print e[t, p]
+        print(e[t, p])
 
-print dir(rpt)
+print(dir(rpt))
