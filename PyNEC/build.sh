@@ -4,17 +4,16 @@
 #
 # Author. Tim Molteno.
 #
+# FIrst have to do git submodule init
 git submodule update --remote
 # 
 ln -s ../necpp_src .
-pushd necpp_src
+DIR=`pwd`
+cd necpp_src
 make -f Makefile.git
 ./configure --without-lapack
-popd
-
-# Generate a README.txt from README.md
-pandoc -o README.txt README.md
+cd ${DIR}
 
 # Build PyNEC
-swig -Wall -v -c++ -python PyNEC.i
-python setup.py build
+swig3.0 -Wall -v -c++ -python PyNEC.i
+python3 setup.py build
