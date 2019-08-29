@@ -16,3 +16,4 @@ upload:
 
 test-install:
 	python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps PyNEC --upgrade
+	
