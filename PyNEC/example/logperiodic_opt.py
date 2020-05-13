@@ -15,7 +15,7 @@ import math
 
 brass_conductivity = 15600000 # mhos
 
-tl_impedance = 75
+tl_impedance = 75.0
 
 def geometry_logperiodic(l_1, x_1, tau):
   """
@@ -45,7 +45,7 @@ def geometry_logperiodic(l_1, x_1, tau):
       nr_segments = int(math.ceil(50*l_i/wavelength)) # TODO this might vary when sweeping even!
       #print nr_segments
 
-      dipole_center_segs[dipole_tag] = nr_segments / 2 + 1
+      dipole_center_segs[dipole_tag] = nr_segments // 2 + 1
 
       center      = np.array([x_i, 0, 0])
       half_height = np.array([0  , 0, l_i/2.0])
@@ -64,7 +64,7 @@ def geometry_logperiodic(l_1, x_1, tau):
 
   # The 6th tag is the smallest tag is the source element
   for dipole in range(0, dipoles_count - 1):
-      src_tag = 1 + dipole # NEC indexing
+      src_tag = int(1 + dipole) # NEC indexing
       src_seg = dipole_center_segs[src_tag]
 
       dst_tag = src_tag + 1

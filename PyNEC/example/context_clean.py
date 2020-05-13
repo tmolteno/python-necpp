@@ -101,10 +101,10 @@ class context_clean(object):
     def set_extended_thin_wire_kernel(self, enable):
         if enable:
             debug ("EK", 0)
-            self.context.set_extended_thin_wire_kernel(1)
+            self.context.set_extended_thin_wire_kernel(True)
         else:
             debug ("EK", -1)
-            self.context.set_extended_thin_wire_kernel(0)
+            self.context.set_extended_thin_wire_kernel(False)
 
     def geometry_complete(self, ground_plane, current_expansion=True):
         no_ground_plane = 0
