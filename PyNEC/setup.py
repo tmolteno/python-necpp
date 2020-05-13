@@ -49,7 +49,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
     
 setuptools.setup (name = 'PyNEC',
-    version = '1.7.3.5',
+    version = '1.7.3.6',
     author  = "Tim Molteno",
     author_email  = "tim@physics.otago.ac.nz",
     url  = "http://github.com/tmolteno/python-necpp",
@@ -68,5 +68,6 @@ setuptools.setup (name = 'PyNEC',
         "Topic :: Scientific/Engineering",
         "Topic :: Communications :: Ham Radio",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+        'Programming Language :: Python :: 3',
         "Intended Audience :: Science/Research"]
 )
