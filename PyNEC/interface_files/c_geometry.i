@@ -255,18 +255,13 @@ public:
       \param ax3 The x_coordinate of corner 3.
       \param ay3 The y_coordinate of corner 3.
       \param az3 The z_coordinate of corner 3.
-      
-      \param ax4 The x_coordinate of corner 4.
-      \param ay4 The x_coordinate of corner 4.
-      \param az4 The x_coordinate of corner 4.
     */
     void multiple_patch( int nx, int ny,
       nec_float ax1, nec_float ay1, nec_float az1,
       nec_float ax2, nec_float ay2, nec_float az2,
-      nec_float ax3, nec_float ay3, nec_float az3,
-      nec_float ax4, nec_float ay4, nec_float az4 )
+      nec_float ax3, nec_float ay3, nec_float az3 )
     {
-      return self->patch( nx, ny, ax1, ay1, az1, ax2, ay2, az2, ax3, ay3, az3, ax4, ay4, az4 );
+      return self->patch( nx, ny, ax1, ay1, az1, ax2, ay2, az2, ax3, ay3, az3, 0, 0, 0 );
     }    
   }
         
