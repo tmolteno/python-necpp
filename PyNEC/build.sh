@@ -14,5 +14,5 @@ make -f Makefile.git
 cd ${DIR}
 
 # Build PyNEC
-swig3.0 -Wall -v -c++ -python PyNEC.i
+swig -Wall -v -c++ -python PyNEC.i
 python3 setup.py build
