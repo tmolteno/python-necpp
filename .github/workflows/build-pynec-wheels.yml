@@ -1,0 +1,126 @@
+name: Build and upload PyNEC to PyPI
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+  release:
+    types:
+      - published
+
+jobs:
+  build_wheels:
+    name: Build PyNEC wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.runs-on }}
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        include:
+          - os: linux
+            runs-on: ubuntu-latest
+          - os: macos-intel
+            runs-on: macos-13
+          - os: macos-arm
+            runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install build dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y swig autoconf automake libtool
+
+      - name: Install build dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install swig autoconf automake libtool
+
+      - name: Configure necpp_src
+        shell: bash
+        run: |
+          cd necpp_src
+          make -f Makefile.git
+          ./configure --without-lapack
+
+      - name: Setup package directory and generate SWIG wrapper
+        shell: bash
+        run: |
+          cd PyNEC
+          ln -s ../necpp_src .
+          swig -Wall -c++ -python PyNEC.i
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.16.5
+        env:
+          CIBW_BUILD: "cp39-* cp310-* cp311-* cp312-*"
+          CIBW_SKIP: "*-musllinux_*"
+          CIBW_BUILD_VERBOSITY: 1
+        with:
+          package-dir: PyNEC
+          output-dir: wheelhouse
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cibw-wheels-pynec-${{ matrix.os }}
+          path: ./wheelhouse/*.whl
+
+  build_sdist:
+    name: Build PyNEC source distribution
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y swig autoconf automake libtool
+
+      - name: Configure necpp_src
+        run: |
+          cd necpp_src
+          make -f Makefile.git
+          ./configure --without-lapack
+
+      - name: Setup package directory and generate SWIG wrapper
+        run: |
+          cd PyNEC
+          ln -s ../necpp_src .
+          swig -Wall -c++ -python PyNEC.i
+
+      - name: Build sdist
+        run: |
+          cd PyNEC
+          pipx run build --sdist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cibw-sdist-pynec
+          path: PyNEC/dist/*.tar.gz
+
+  upload_pypi:
+    needs: [build_wheels, build_sdist]
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    if: github.event_name == 'release' && github.event.action == 'published'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          # unpacks all CIBW artifacts into dist/
+          pattern: cibw-*
+          path: dist
+          merge-multiple: true
+
+      - uses: pypa/gh-action-pypi-publish@release/v1
