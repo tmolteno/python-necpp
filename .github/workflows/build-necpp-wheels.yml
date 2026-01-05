@@ -22,7 +22,7 @@ jobs:
           - os: linux
             runs-on: ubuntu-latest
           - os: macos-intel
-            runs-on: macos-13
+            runs-on: macos-15
           - os: macos-arm
             runs-on: macos-latest
 
