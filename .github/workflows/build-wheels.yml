@@ -14,6 +14,8 @@ jobs:
   build_wheels:
     name: Build wheels for ${{ matrix.package }} on ${{ matrix.os }}
     runs-on: ${{ matrix.runs-on }}
+    permissions:
+      contents: read
     strategy:
       matrix:
         include:
@@ -90,6 +92,8 @@ jobs:
   build_sdist:
     name: Build source distribution
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         package: [PyNEC, necpp]
