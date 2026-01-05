@@ -1,0 +1,147 @@
+name: Build and upload to PyPI
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+  release:
+    types:
+      - published
+
+jobs:
+  build_wheels:
+    name: Build wheels for ${{ matrix.package }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.runs-on }}
+    strategy:
+      matrix:
+        include:
+          # PyNEC builds
+          - package: PyNEC
+            os: linux
+            runs-on: ubuntu-latest
+          - package: PyNEC
+            os: macos-intel
+            runs-on: macos-13
+          - package: PyNEC
+            os: macos-arm
+            runs-on: macos-latest
+          # necpp builds
+          - package: necpp
+            os: linux
+            runs-on: ubuntu-latest
+          - package: necpp
+            os: macos-intel
+            runs-on: macos-13
+          - package: necpp
+            os: macos-arm
+            runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install build dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y swig autoconf automake libtool
+
+      - name: Install build dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install swig autoconf automake libtool
+
+      - name: Configure necpp_src
+        shell: bash
+        run: |
+          cd necpp_src
+          make -f Makefile.git
+          ./configure --without-lapack
+
+      - name: Setup package directory and generate SWIG wrapper
+        shell: bash
+        run: |
+          cd ${{ matrix.package }}
+          ln -s ../necpp_src .
+          if [ "${{ matrix.package }}" = "PyNEC" ]; then
+            swig -Wall -c++ -python PyNEC.i
+          else
+            swig -I../necpp_src/src/ -python necpp.i
+          fi
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.16.5
+        env:
+          CIBW_BUILD: "cp38-* cp39-* cp310-* cp311-* cp312-*"
+          CIBW_SKIP: "*-musllinux_*"
+          CIBW_BUILD_VERBOSITY: 1
+        with:
+          package-dir: ${{ matrix.package }}
+          output-dir: wheelhouse
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cibw-wheels-${{ matrix.package }}-${{ matrix.os }}-${{ strategy.job-index }}
+          path: ./wheelhouse/*.whl
+
+  build_sdist:
+    name: Build source distribution
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: [PyNEC, necpp]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y swig autoconf automake libtool
+
+      - name: Configure necpp_src
+        run: |
+          cd necpp_src
+          make -f Makefile.git
+          ./configure --without-lapack
+
+      - name: Setup package directory and generate SWIG wrapper
+        run: |
+          cd ${{ matrix.package }}
+          ln -s ../necpp_src .
+          if [ "${{ matrix.package }}" = "PyNEC" ]; then
+            swig -Wall -c++ -python PyNEC.i
+          else
+            swig -I../necpp_src/src/ -python necpp.i
+          fi
+
+      - name: Build sdist
+        run: |
+          cd ${{ matrix.package }}
+          pipx run build --sdist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cibw-sdist-${{ matrix.package }}
+          path: ${{ matrix.package }}/dist/*.tar.gz
+
+  upload_pypi:
+    needs: [build_wheels, build_sdist]
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    if: github.event_name == 'release' && github.event.action == 'published'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          # unpacks all CIBW artifacts into dist/
+          pattern: cibw-*
+          path: dist
+          merge-multiple: true
+
+      - uses: pypa/gh-action-pypi-publish@release/v1
