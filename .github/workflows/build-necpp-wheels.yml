@@ -35,19 +35,19 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y swig autoconf automake libtool gfortran
+          sudo apt-get install -y swig autoconf automake libtool
 
       - name: Install build dependencies (macOS)
         if: runner.os == 'macOS'
         run: |
-          brew install swig autoconf automake libtool gfortran
+          brew install swig autoconf automake libtool
 
       - name: Configure necpp_src
         shell: bash
         run: |
           cd necpp_src
           make -f Makefile.git
-          ./configure --without-lapack
+          ./configure
 
       - name: Setup package directory and generate SWIG wrapper
         shell: bash
@@ -84,13 +84,13 @@ jobs:
       - name: Install build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y swig autoconf automake libtool gfortran
+          sudo apt-get install -y swig autoconf automake libtool
 
       - name: Configure necpp_src
         run: |
           cd necpp_src
           make -f Makefile.git
-          ./configure --without-lapack
+          ./configure
 
       - name: Setup package directory and generate SWIG wrapper
         run: |
