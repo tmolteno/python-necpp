@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PyNEC"
-version = "1.7.2"
+version = "1.7.4"
 description = "Python Antenna Simulation Module (nec2++) object-oriented interface"
 readme = "README.md"
 license = { text = "GPLv3" }
