@@ -1,4 +1,4 @@
-### Version 1.7.5:
+### Version 1.7.2:
 
 * Convert setup.py to pyproject.toml as primary metadata source (PEP 621)
   - All package metadata now lives in pyproject.toml `[project]` table
@@ -7,6 +7,12 @@
 * Fix #24: VSWR formula guard — add explicit `np.abs()` in vswr() to prevent negative values
 * Fix #8: Add missing `handle_nec` method to `necpp/tests/test_multiple_sc_cards.py`
 * Fix #31: Guard numpy import in `PyNEC/setup.py` with try/except for PEP 517 metadata phases
+* Fix CI branch filter (main → master)
+
+### Version 1.7.3.6:
+
+* Update with a requested fix by user slawkory in context_clean.py
+* Also fix an intger division bug introduced with the shift to python3 in logperiodic_opt.py
 
 ### Version 1.7.4:
 
@@ -23,8 +29,3 @@
   - Add scipy, matplotlib to dev-requirements.txt
   - Remove stale Python 2 classifiers from necpp/setup.py
   - Fix Makefile manylinux2014 → manylinux_2_28
-
-### Version 1.7.3.6:
-
-* Update with a requested fix by user slawkory in context_clean.py
-* Also fix an intger division bug introduced with the shift to python3 in logperiodic_opt.py
