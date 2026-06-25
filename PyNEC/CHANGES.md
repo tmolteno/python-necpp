@@ -8,6 +8,8 @@
 * Fix #24: VSWR formula guard — add explicit `np.abs()` in vswr() to prevent negative values
 * Fix #8: Add missing `handle_nec` method to `necpp/tests/test_multiple_sc_cards.py`
 * Fix #31: Guard numpy import in `PyNEC/setup.py` with try/except for PEP 517 metadata phases
+* Fix #20/#27: Correct helix argument order in SWIG interface (tag_id/segment_count were at wrong position)
+* Update necpp_src submodule to v1.7.6 (fixes helix divide-by-zero and wire intersection checks)
 * Fix multiple bugs found during code analysis:
   - Move test_multiple_sc_cards.py from PyNEC/tests/ to necpp/tests/ (it imported the wrong module)
   - Fix setup.cfg referencing nonexistent README.txt → README.md
