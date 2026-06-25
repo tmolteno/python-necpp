@@ -25,10 +25,6 @@ nec_sources.extend(
 )
 nec_sources.extend(glob("necpp_wrap.c"))
 
-nec_headers = []
-nec_headers.extend(glob("necpp_src/src/*.h"))
-nec_headers.extend(glob("necpp_src/config.h"))
-
 # At the moment, the config.h file is needed, and this should be generated from the ./configure
 # command in the parent directory. Use ./configure --without-lapack to avoid dependance on LAPACK
 #
@@ -36,7 +32,6 @@ necpp_module = Extension(
     "_necpp",
     sources=nec_sources,
     include_dirs=["necpp_src/src/", "necpp_src/"],
-    depends=nec_headers,
     define_macros=[("BUILD_PYTHON", "1")],
 )
 

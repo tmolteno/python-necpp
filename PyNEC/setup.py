@@ -35,10 +35,6 @@ nec_sources.extend(
 )
 nec_sources.extend(glob("PyNEC_wrap.cxx"))
 
-nec_headers = []
-nec_headers.extend(glob("necpp_src/src/*.h"))
-nec_headers.extend(glob("necpp_src/config.h"))
-
 # At the moment, the config.h file is needed, and this should be generated from the ./configure
 # command in the parent directory. Use ./configure --without-lapack to avoid dependance on LAPACK
 #
@@ -54,7 +50,6 @@ necpp_module = Extension(
     include_dirs=include_dirs,
     extra_compile_args=["-fPIC"],
     extra_link_args=["-lstdc++"],
-    depends=nec_headers,
     define_macros=[
         ("BUILD_PYTHON", "1"),
         ("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION"),
