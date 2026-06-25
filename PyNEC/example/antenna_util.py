@@ -3,16 +3,21 @@
 #
 import numpy as np
 
+
 def reflection_coefficient(z, z0):
-  return np.abs((z - z0) / (z + z0))
+    return np.abs((z - z0) / (z + z0))
+
 
 def vswr(z, z0):
     Gamma = reflection_coefficient(z, z0)
-    return float((1 + Gamma) / (1 - Gamma))
+    mag = np.abs(Gamma)
+    return float((1 + mag) / (1 - mag))
+
 
 def mismatch(z, z0):
     Gamma = reflection_coefficient(z, z0)
     return 1 - Gamma**2
+
 
 # Source: https://gist.github.com/temporaer/6755266
 # 'matplotlib log-polar plots seem to be quite buggy at the time of writing.' Yes, indeed, sadly...

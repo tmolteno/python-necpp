@@ -7,6 +7,27 @@ This repository contains two wrappers for the [http://github.com/tmolteno/necpp 
 
 Both are based on Tim Molteno (tim@physics.otago.ac.nz)'s code with major cleanup by Bart Coppens.
 
+## Quick Install
+
+```bash
+pip install PyNEC necpp
+```
+
+## Build from Source
+
+Uses [uv](https://github.com/astral-sh/uv) for modern PEP 517 builds:
+
+```bash
+git clone --recursive https://github.com/tmolteno/python-necpp.git
+cd python-necpp
+
+# Build PyNEC
+cd PyNEC && ./build.sh && uv build
+
+# Build necpp
+cd ../necpp && ./build.sh && uv build
+```
+
 ## TODOs
 
 The cleaner API should really be **ported to C++**, so the clean wrappers get automatically generated, and C++ can use the same cleaner interface. But for now, I'm happy with the Python wrapper :)

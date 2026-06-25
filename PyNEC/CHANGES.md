@@ -1,3 +1,13 @@
+### Version 1.7.5:
+
+* Convert setup.py to pyproject.toml as primary metadata source (PEP 621)
+  - All package metadata now lives in pyproject.toml `[project]` table
+  - setup.py reduced to C++ extension compilation only
+  - Supports uv build (`uv build`) as well as pip/build
+* Fix #24: VSWR formula guard — add explicit `np.abs()` in vswr() to prevent negative values
+* Fix #8: Add missing `handle_nec` method to `necpp/tests/test_multiple_sc_cards.py`
+* Fix #31: Guard numpy import in `PyNEC/setup.py` with try/except for PEP 517 metadata phases
+
 ### Version 1.7.4:
 
 * Fix multiple bugs found during code analysis:

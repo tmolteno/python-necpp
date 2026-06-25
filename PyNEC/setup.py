@@ -3,21 +3,23 @@
 """
 setup.py file for PyNEC Python module
 
+This file handles the C++ extension compilation only.
+All package metadata is in pyproject.toml.
+
 Author Tim Molteno. tim@molteno.net
 """
 
-import distutils.sysconfig
 import os
 from glob import glob
 
-import numpy as np
-import setuptools
+from setuptools import Extension, setup
 
-# Remove silly flags from the compilation to avoid warnings.
-# cfg_vars = distutils.sysconfig.get_config_vars()
-# for key, value in cfg_vars.items():
-#  if type(value) == str:
-#    cfg_vars[key] = value.replace("-Wstrict-prototypes", "")
+# numpy is declared in pyproject.toml build-system.requires for PEP 517 isolated builds.
+# Guard against the case where setup.py is evaluated for metadata before build deps are installed.
+try:
+    import numpy as np
+except ImportError:
+    np = None
 
 # Generate a list of the sources.
 nec_sources = []
@@ -37,14 +39,19 @@ nec_headers = []
 nec_headers.extend(glob("necpp_src/src/*.h"))
 nec_headers.extend(glob("necpp_src/config.h"))
 
-
 # At the moment, the config.h file is needed, and this should be generated from the ./configure
 # command in the parent directory. Use ./configure --without-lapack to avoid dependance on LAPACK
 #
-necpp_module = setuptools.Extension(
+if np is not None:
+    include_dirs = [np.get_include(), "necpp_src/src", "necpp_src/", "necpp_src/win32/"]
+else:
+    # Fallback for metadata-only setup phases (e.g., egg_info) before build deps are installed
+    include_dirs = ["necpp_src/src", "necpp_src/", "necpp_src/win32/"]
+
+necpp_module = Extension(
     "_PyNEC",
     sources=nec_sources,
-    include_dirs=[np.get_include(), "necpp_src/src", "necpp_src/", "necpp_src/win32/"],
+    include_dirs=include_dirs,
     extra_compile_args=["-fPIC"],
     extra_link_args=["-lstdc++"],
     depends=nec_headers,
@@ -54,31 +61,6 @@ necpp_module = setuptools.Extension(
     ],
 )
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
-
-setuptools.setup(
-    name="PyNEC",
-    version="1.7.4",
-    author="Tim Molteno",
-    author_email="tim@physics.otago.ac.nz",
-    url="http://github.com/tmolteno/python-necpp",
-    keywords="nec2 nec2++ antenna electromagnetism radio",
-    description="Python Antenna Simulation Module (nec2++) object-oriented interface",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    include_package_data=True,
-    data_files=[("examples", ["example/test_rp.py"])],
+setup(
     ext_modules=[necpp_module],
-    requires=["numpy"],
-    py_modules=["PyNEC"],
-    license="GPLv3",
-    classifiers=[
-        "Development Status :: 5 - Production/Stable",
-        "Topic :: Scientific/Engineering",
-        "Topic :: Communications :: Ham Radio",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-        "Programming Language :: Python :: 3",
-        "Intended Audience :: Science/Research",
-    ],
 )

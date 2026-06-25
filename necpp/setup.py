@@ -2,6 +2,9 @@
 
 """
 setup.py file for necpp Python module.
+
+This file handles the C extension compilation only.
+All package metadata is in pyproject.toml.
 """
 
 import os
@@ -26,7 +29,6 @@ nec_headers = []
 nec_headers.extend(glob("necpp_src/src/*.h"))
 nec_headers.extend(glob("necpp_src/config.h"))
 
-
 # At the moment, the config.h file is needed, and this should be generated from the ./configure
 # command in the parent directory. Use ./configure --without-lapack to avoid dependance on LAPACK
 #
@@ -38,30 +40,6 @@ necpp_module = Extension(
     define_macros=[("BUILD_PYTHON", "1")],
 )
 
-with open("README.md") as f:
-    readme = f.read()
-
 setup(
-    name="necpp",
-    version="1.7.4",
-    author="Tim Molteno",
-    author_email="tim@physics.otago.ac.nz",
-    url="http://github.com/tmolteno/necpp",
-    keywords="nec2 nec2++ antenna electromagnetism radio",
-    description="Python Antenna Simulation Module (nec2++) C-style interface",
-    long_description=readme,
-    long_description_content_type="text/markdown",
-    include_package_data=True,
-    data_files=[("examples", ["necpp_src/example/test.py"])],
     ext_modules=[necpp_module],
-    py_modules=["necpp"],
-    license="GPLv3",
-    classifiers=[
-        "Development Status :: 5 - Production/Stable",
-        "Topic :: Scientific/Engineering",
-        "Topic :: Communications :: Ham Radio",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-        "Programming Language :: Python :: 3",
-        "Intended Audience :: Science/Research",
-    ],
 )

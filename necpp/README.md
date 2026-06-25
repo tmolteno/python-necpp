@@ -25,6 +25,11 @@ follows:
 
     pip install necpp
 
+To build from source with uv:
+
+    uv build
+    uv pip install .
+
 ## Documentation
 
 Try help(necpp) to list the available functions. The functions available are documented in the C-style API of nec2++. 

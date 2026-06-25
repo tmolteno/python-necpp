@@ -1,3 +1,35 @@
 [build-system]
 requires = ["setuptools", "wheel", "numpy"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "PyNEC"
+version = "1.7.5"
+description = "Python Antenna Simulation Module (nec2++) object-oriented interface"
+readme = "README.md"
+license = { text = "GPLv3" }
+authors = [
+    { name = "Tim Molteno", email = "tim@physics.otago.ac.nz" },
+]
+keywords = ["nec2", "nec2++", "antenna", "electromagnetism", "radio"]
+requires-python = ">=3.9"
+dependencies = ["numpy"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Communications :: Ham Radio",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Science/Research",
+]
+
+[project.urls]
+Homepage = "http://github.com/tmolteno/python-necpp"
+Repository = "http://github.com/tmolteno/python-necpp"
+
+[tool.setuptools]
+include-package-data = true
+py-modules = ["PyNEC"]
+
+[tool.setuptools.data-files]
+examples = ["example/test_rp.py"]

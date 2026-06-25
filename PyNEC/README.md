@@ -56,12 +56,10 @@ Here is an example that plots a radiation pattern.
 
 Requirements
 
-* [Pandoc](https://pandoc.org/installing.html) 
 * [Swig](http://www.swig.org/download.html)
 * For Windows: [C/C++ compilers](https://wiki.python.org/moin/WindowsCompilers).
 * Git bash (for running build.sh script)
-* Latest python packages: pip, setuptools, numpy, wheel, numpy. Run: 
-`$ pip install --upgrade pip setuptools wheel numpy`
+* [uv](https://github.com/astral-sh/uv) (recommended) or pip + setuptools + numpy + wheel
 
 *Note: Download and extract swigwin.zip and add the path to swig.exe to environment.*
 
@@ -71,8 +69,8 @@ Then do following:
         $ cd python-necpp
         $ cd PyNEC
         $ ./build.sh
-		$ python setup.py bdist_wheel (For generating wheel, requires wheel package)
-        $ sudo python setup.py install
+        $ uv build               # Modern, fast build
+        $ uv pip install .       # Or: pip install .
     
 *Note: 'sudo' is not required in windows.*
     
