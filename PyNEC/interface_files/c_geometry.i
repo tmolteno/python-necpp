@@ -99,6 +99,24 @@ public:
                 nec_float in_x1, nec_float in_y1, nec_float in_z1,
                 nec_float in_x2, nec_float in_y2, nec_float in_z2);
 
+  /*! Add a continuation card (SC) that must immediately follow an SP/SM card.
+
+  The SC card defines additional patches for a multiple-patch surface.
+  Refer to the NEC2 documentation for the SM/SC card specification.
+  See necpp/tests/test_multiple_sc_cards.py for a usage example.
+
+      \param i2 The number of patches.
+      \param x3 The x-coordinate of corner 3.
+      \param y3 The y-coordinate of corner 3.
+      \param z3 The z-coordinate of corner 3.
+      \param x4 The x-coordinate of corner 4.
+      \param y4 The y-coordinate of corner 4.
+      \param z4 The z-coordinate of corner 4.
+  */
+  void sc_card( int i2,
+                nec_float x3, nec_float y3, nec_float z3,
+                nec_float x4, nec_float y4, nec_float z4);
+
   void gx_card(int card_int_1, int card_int_2);
 
   %extend{
