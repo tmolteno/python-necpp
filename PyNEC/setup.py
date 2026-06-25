@@ -63,4 +63,5 @@ necpp_module = Extension(
 
 setup(
     ext_modules=[necpp_module],
+    data_files=[("examples", ["example/test_rp.py"])],
 )

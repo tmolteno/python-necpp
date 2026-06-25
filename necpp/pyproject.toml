@@ -29,6 +29,3 @@ Repository = "http://github.com/tmolteno/python-necpp"
 [tool.setuptools]
 include-package-data = true
 py-modules = ["necpp"]
-
-[tool.setuptools.data-files]
-examples = ["necpp_src/example/test.py"]
