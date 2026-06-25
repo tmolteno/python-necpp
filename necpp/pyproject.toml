@@ -7,7 +7,7 @@ name = "necpp"
 version = "1.7.4"
 description = "Python Antenna Simulation Module (nec2++) C-style interface"
 readme = "README.md"
-license = { text = "GPLv3" }
+license = "GPL-3.0-only"
 authors = [
     { name = "Tim Molteno", email = "tim@physics.otago.ac.nz" },
 ]
@@ -17,7 +17,6 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Topic :: Scientific/Engineering",
     "Topic :: Communications :: Ham Radio",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Programming Language :: Python :: 3",
     "Intended Audience :: Science/Research",
 ]
