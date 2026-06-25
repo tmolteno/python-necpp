@@ -1,4 +1,4 @@
-### Version 1.7.4:
+### Version 1.7.5:
 
 * Convert setup.py to pyproject.toml as primary metadata source (PEP 621)
   - All package metadata now lives in pyproject.toml `[project]` table
