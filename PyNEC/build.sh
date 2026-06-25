@@ -6,6 +6,7 @@
 #
 # FIrst have to do git submodule init
 git submodule update --remote
+rm -f necpp_src
 ln -s ../necpp_src .
 DIR=`pwd`
 cd ../necpp_src

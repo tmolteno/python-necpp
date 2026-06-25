@@ -18,5 +18,5 @@ done
 # Install packages and test
 for PYBIN in /opt/python/*/bin/; do
     "${PYBIN}/pip" install PyNEC --no-index -f /io/wheelhouse
-    (cd "$HOME"; "${PYBIN}/nosetests" pymanylinuxdemo)
+    "${PYBIN}/python" -c "import PyNEC; print('PyNEC imported successfully')"
 done

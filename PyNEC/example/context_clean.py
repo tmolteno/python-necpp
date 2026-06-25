@@ -9,9 +9,11 @@ class Range(object):
         if count is not None:
             self.count = count
             self.delta = (stop - start) / count
-        else:
-            self.count = (stop_ - start) / delta
+        elif delta is not None:
+            self.count = int((stop - start) / delta)
             self.delta = delta
+        else:
+            raise ValueError("Either count or delta must be specified")
 
 # Setting do_debug to True will dump all the cards generated with context_clean, so you can verify the output more easily in a text editor (and debug that file manually)
 do_debug = False

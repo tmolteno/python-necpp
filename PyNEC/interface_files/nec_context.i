@@ -268,6 +268,8 @@ public:
   */
   void ex_card(enum excitation_type itmp1, int itmp2, int itmp3, int itmp4, int itmp5,
                   nec_float tmp1, nec_float tmp2, nec_float tmp3, nec_float tmp4, nec_float tmp5, nec_float tmp6);
+
+  /*! Overload of ex_card() without itmp5 (no normalization flag). All other parameters as above. */
   void ex_card(enum excitation_type itmp1, int itmp2, int itmp3, int itmp4,
                   nec_float tmp1, nec_float tmp2, nec_float tmp3, nec_float tmp4, nec_float tmp5, nec_float tmp6);
  
