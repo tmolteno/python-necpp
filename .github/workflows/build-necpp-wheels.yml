@@ -65,6 +65,30 @@ jobs:
           name: cibw-wheels-necpp-${{ matrix.os }}
           path: ./wheelhouse/*.whl
 
+  test:
+    name: Test necpp on ${{ matrix.os }}
+    needs: [build_wheels, build_sdist]
+    runs-on: ${{ matrix.runs-on }}
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        include:
+          - os: linux
+            runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cibw-wheels-necpp-${{ matrix.os }}
+          path: wheelhouse
+          merge-multiple: true
+      - name: Install wheel and run tests
+        run: |
+          pip install wheelhouse/*.whl
+          pip install pytest
+          python -m pytest necpp/tests/ -v
+
   build_sdist:
     name: Build necpp source distribution
     runs-on: ubuntu-latest

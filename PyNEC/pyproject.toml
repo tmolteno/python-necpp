@@ -26,6 +26,13 @@ classifiers = [
 Homepage = "http://github.com/tmolteno/python-necpp"
 Repository = "http://github.com/tmolteno/python-necpp"
 
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov"]
+
 [tool.setuptools]
 include-package-data = true
 py-modules = ["PyNEC"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
