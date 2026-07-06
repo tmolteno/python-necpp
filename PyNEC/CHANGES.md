@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
 ### Version 1.8.0:
 
 * Update necpp_src submodule to v2.1.1 — major engine upgrade

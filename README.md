@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
 # python-necpp: Antenna simulation in python
 
 This repository contains two wrappers for the [http://github.com/tmolteno/necpp nec2++] antenna simulation package:

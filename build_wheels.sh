@@ -1,4 +1,5 @@
 #!/bin/bash
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 set -e -x
 
 # Install a system package required by our library

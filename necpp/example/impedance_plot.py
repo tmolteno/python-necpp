@@ -1,3 +1,4 @@
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 #
 #  Plot of reflection coefficient vs antenna length for a fixed base height.
 #

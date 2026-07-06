@@ -1,4 +1,5 @@
 #!/bin/bash
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 # Script to build the nec2++ python module.
 # Uses uv build (https://github.com/astral-sh/uv) for modern PEP 517 builds.
 git submodule update --remote

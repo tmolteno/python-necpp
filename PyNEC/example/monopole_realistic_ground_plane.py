@@ -1,3 +1,4 @@
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 import numpy as np
 import scipy.optimize
 import matplotlib.pyplot as plt

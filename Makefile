@@ -1,3 +1,4 @@
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 PLAT=manylinux_2_28
 DOCKER_IMAGE=quay.io/pypa/manylinux_2_28_x86_64
 PRE_CMD=

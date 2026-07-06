@@ -1,3 +1,4 @@
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 # Note: explicit zeroes are blanks. All other values should be specified symbolically.
 
 # Currently these contain only the subset of cards that I needed

@@ -1,3 +1,4 @@
+/* Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) */
 class nec_near_field_pattern
 {
 public:

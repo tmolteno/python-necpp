@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
 # PyNEC examples
 
 This folder contains some examples showing the use of PyNEC antenna simulation module 

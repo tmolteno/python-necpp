@@ -1,3 +1,4 @@
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 build:
 	python3 setup.py sdist
 	#python3 setup.py bdist_wheel

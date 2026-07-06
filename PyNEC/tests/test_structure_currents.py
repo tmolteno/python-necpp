@@ -1,3 +1,4 @@
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 """Test structure currents via get_structure_currents()."""
 
 import PyNEC

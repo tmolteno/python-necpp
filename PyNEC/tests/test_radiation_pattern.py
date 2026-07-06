@@ -1,3 +1,4 @@
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 """Test radiation pattern via get_radiation_pattern() and rp_card()."""
 
 import PyNEC

@@ -1,3 +1,4 @@
+/* Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) */
 %module PyNEC
 
 %include <pycomplex.swg>

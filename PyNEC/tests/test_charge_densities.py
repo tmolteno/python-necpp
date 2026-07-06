@@ -1,3 +1,4 @@
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 """Test charge densities via pq_card() and get_structure_currents()."""
 
 import PyNEC

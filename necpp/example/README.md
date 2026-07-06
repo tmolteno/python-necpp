@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
 # Using python-necpp
 
 Installation is easy with the python pip installer.  Install python-necpp with

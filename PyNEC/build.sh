@@ -1,4 +1,5 @@
 #!/bin/bash
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 #
 # Build script for the PyNEC module.
 # Uses uv build (https://github.com/astral-sh/uv) for modern PEP 517 builds.

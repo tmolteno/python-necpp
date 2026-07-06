@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 """
 Basic PyNEC usage example — demonstrates:
 

@@ -1,3 +1,4 @@
+/* Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) */
 template<typename T>
 class safe_array {
 public:

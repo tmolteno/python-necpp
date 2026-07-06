@@ -1,3 +1,4 @@
+/* Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) */
 /* these typedefs can be moved to an other interface file. They have been left
 here to respect the structure of the original code. */
 

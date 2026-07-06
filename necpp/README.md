@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
 # python-necpp: Antenna simulation in python
 
 This module allows you to do antenna simulations in Python using the nec2++ antenna

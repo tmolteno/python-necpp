@@ -1,3 +1,4 @@
+<!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
 # Python NEC2++ Module
 
 This module wraps the C++ API for antenna simulation of nec2++. It is easier to work with, and more powerful than the C-style API wrapper. Works with Python 2.7 and 3+.

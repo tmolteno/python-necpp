@@ -1,3 +1,4 @@
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 """Test near-field patterns via ne_card(), nh_card(), get_near_field_pattern()."""
 
 import PyNEC

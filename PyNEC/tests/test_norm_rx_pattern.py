@@ -1,3 +1,4 @@
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 """Test normalized receiving pattern via get_norm_rx_pattern()."""
 
 import PyNEC

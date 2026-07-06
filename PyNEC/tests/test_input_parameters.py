@@ -1,3 +1,4 @@
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 """Test antenna input parameters via get_input_parameters()."""
 
 import PyNEC

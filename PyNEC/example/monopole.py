@@ -1,3 +1,4 @@
+# Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
 #
 #  Simple vertical monopole antenna simulation using python-necpp
 #  pip install PyNEC
