@@ -1,3 +1,16 @@
+### Version 1.8.0:
+
+* Update necpp_src submodule to v2.1.1 — major engine upgrade
+  - Eigen 3.4.0 replaces LAPACK (bundled in src/eigen3/, no external dependency)
+  - SIMD-accelerated LU decomposition via Eigen::PartialPivLU
+  - nec_3vector now backed by Eigen::Matrix (internal, no API change)
+  - Fix uninitialized structure_power_loss producing NaN efficiency
+  - Fix structure loss reported as zero with current printing disabled
+  - Fix exception memory leak: throw-by-pointer → throw-by-value (55+ sites)
+  - Table-driven NEC card parser replaces C-string parser
+  - 4 monolithic functions refactored into 13 focused methods
+  - No public API changes — SWIG interface and Python wrapper fully compatible
+
 ### Version 1.7.5:
 
 * Convert setup.py to pyproject.toml as primary metadata source (PEP 621)

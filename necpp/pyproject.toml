@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "necpp"
-version = "1.7.5"
+version = "1.8.0"
 description = "Python Antenna Simulation Module (nec2++) C-style interface"
 readme = "README.md"
 license = "GPL-3.0-only"
