@@ -6,8 +6,12 @@
     cd PyNEC
     ./build.sh
     sudo python setup.py install
-    
-    
+
+## Testing
+
+    pip install pytest
+    python -m pytest tests/ -v
+
 ## Uploading the package to pypi
 
 Source & Binary Distribution

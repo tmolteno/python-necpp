@@ -35,11 +35,14 @@ To update the submodule to the latest necpp
 
 ### Testing
 
-Then you can do the usual
+Build and install the module:
 
     ./build.sh
 
-This will run SWIG a source distribution tarball
+Run the tests:
+
+    pip install pytest
+    python -m pytest tests/ -v
 
 ### Uploading to PyPI.
 
