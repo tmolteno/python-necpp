@@ -30,7 +30,7 @@ nec_sources.extend(glob("necpp_wrap.c"))
 necpp_module = Extension(
     "_necpp",
     sources=nec_sources,
-    include_dirs=["necpp_src/src/", "necpp_src/"],
+    include_dirs=["necpp_src/src/", "necpp_src/", "necpp_src/src/eigen3"],
     define_macros=[("BUILD_PYTHON", "1")],
 )
 
