@@ -35,8 +35,7 @@ nec_sources.extend(
 )
 nec_sources.extend(glob("PyNEC_wrap.cxx"))
 
-# At the moment, the config.h file is needed, and this should be generated from the ./configure
-# command in the parent directory. Use ./configure --without-lapack to avoid dependance on LAPACK
+# config.h is generated from ./configure in the parent directory.
 #
 if np is not None:
     include_dirs = [np.get_include(), "necpp_src/src", "necpp_src/", "necpp_src/win32/"]

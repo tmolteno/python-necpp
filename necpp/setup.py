@@ -25,8 +25,7 @@ nec_sources.extend(
 )
 nec_sources.extend(glob("necpp_wrap.c"))
 
-# At the moment, the config.h file is needed, and this should be generated from the ./configure
-# command in the parent directory. Use ./configure --without-lapack to avoid dependance on LAPACK
+# config.h is generated from ./configure in the parent directory.
 #
 necpp_module = Extension(
     "_necpp",

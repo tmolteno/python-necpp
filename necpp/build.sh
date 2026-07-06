@@ -7,7 +7,7 @@ ln -s ../necpp_src .
 DIR=`pwd`
 cd necpp_src
 make -f Makefile.git
-./configure --without-lapack
+./configure
 cd ${DIR}
 PYTHON=python3
 
