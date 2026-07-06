@@ -29,8 +29,8 @@ To update the submodule to the latest necpp
 
 ### Converting from MarkDown
 
-    sudo aptitude install pandoc swig
-    
+    apt install pandoc swig
+
     pandoc --to=rst  README.md > README.txt
 
 ### Testing
@@ -38,14 +38,14 @@ To update the submodule to the latest necpp
 Build and install the module:
 
     ./build.sh
+    uv pip install dist/*.whl
 
 Run the tests:
 
-    pip install pytest
+    uv pip install pytest
     python -m pytest tests/ -v
 
 ### Uploading to PyPI.
 
-http://peterdowns.com/posts/first-time-with-pypi.html
-
-    python setup.py sdist upload -r pypitest
+    uv build
+    uv publish

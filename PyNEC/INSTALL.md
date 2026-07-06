@@ -1,21 +1,18 @@
 ## Building from Source
 
-    aptitude install swig3.0
+    apt install swig
     git submodule init
     git submodule update --remote
     cd PyNEC
     ./build.sh
-    sudo python setup.py install
+    uv pip install dist/*.whl
 
 ## Testing
 
-    pip install pytest
+    uv pip install pytest
     python -m pytest tests/ -v
 
 ## Uploading the package to pypi
 
-Source & Binary Distribution
-    python3 setup.py sdist
-    python3 setup.py bdist_wheel
-    
-    python3 setup.py upload
+    uv build
+    uv publish
