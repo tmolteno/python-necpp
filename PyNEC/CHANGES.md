@@ -9,7 +9,8 @@
 * Fix #8: Add missing `handle_nec` method to `necpp/tests/test_multiple_sc_cards.py`
 * Fix #31: Guard numpy import in `PyNEC/setup.py` with try/except for PEP 517 metadata phases
 * Fix #20/#27: Correct helix argument order in SWIG interface (tag_id/segment_count were at wrong position)
-* Update necpp_src submodule to v1.7.6 (fixes helix divide-by-zero and wire intersection checks)
+* Update necpp_src submodule to v2.1.1 (Eigen replaces LAPACK, bundled in src/eigen3/)
+  - No external Eigen/LAPACK dependency needed for CI builds
 * Fix #28: Add sc_card to PyNEC SWIG interface (continuation card for multiple-patch surfaces)
 * Fix #22/#28: Add PyNEC/example/basic_usage.py — demonstrates wire(), feedpoint impedance,
   structure currents, and SC card usage
