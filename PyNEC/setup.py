@@ -39,10 +39,10 @@ nec_sources.extend(glob("PyNEC_wrap.cxx"))
 # command in the parent directory. Use ./configure --without-lapack to avoid dependance on LAPACK
 #
 if np is not None:
-    include_dirs = [np.get_include(), "necpp_src/src", "necpp_src/", "necpp_src/win32/"]
+    include_dirs = [np.get_include(), "necpp_src/src", "necpp_src/", "necpp_src/win32/", "necpp_src/src/eigen3"]
 else:
     # Fallback for metadata-only setup phases (e.g., egg_info) before build deps are installed
-    include_dirs = ["necpp_src/src", "necpp_src/", "necpp_src/win32/"]
+    include_dirs = ["necpp_src/src", "necpp_src/", "necpp_src/win32/", "necpp_src/src/eigen3"]
 
 necpp_module = Extension(
     "_PyNEC",
