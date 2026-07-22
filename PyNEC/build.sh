@@ -6,7 +6,8 @@
 #
 # Author. Tim Molteno.
 #
-git submodule update --remote
+git submodule update --remote --init
+# Create a symlink so setup.py (run from this dir) can resolve necpp_src/.
 rm -f necpp_src
 ln -s ../necpp_src .
 DIR=`pwd`
