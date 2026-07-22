@@ -7,8 +7,8 @@ rm -f necpp_src
 ln -s ../necpp_src .
 DIR=`pwd`
 cd necpp_src
-make -f Makefile.git
-./configure
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
 cd ${DIR}
 PYTHON=python3
 

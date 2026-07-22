@@ -26,12 +26,12 @@ nec_sources.extend(
 )
 nec_sources.extend(glob("necpp_wrap.c"))
 
-# config.h is generated from ./configure in the parent directory.
+# config.h is generated from cmake in the parent directory.
 #
 necpp_module = Extension(
     "_necpp",
     sources=nec_sources,
-    include_dirs=["necpp_src/src/", "necpp_src/", "necpp_src/src/eigen3"],
+    include_dirs=["necpp_src/src/", "necpp_src/", "necpp_src/build/", "necpp_src/src/eigen3"],
     define_macros=[("BUILD_PYTHON", "1")],
 )
 
