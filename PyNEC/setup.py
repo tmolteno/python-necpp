@@ -39,10 +39,10 @@ nec_sources.extend(glob("PyNEC_wrap.cxx"))
 # config.h is generated from cmake in the parent directory.
 #
 if np is not None:
-    include_dirs = [np.get_include(), "necpp_src/src", "necpp_src/", "necpp_src/build/", "necpp_src/win32/", "necpp_src/src/eigen3"]
+    include_dirs = [np.get_include(), "necpp_src/src", "necpp_src/", "necpp_src/build/", "necpp_src/win32/", "necpp_src/src/eigen"]
 else:
     # Fallback for metadata-only setup phases (e.g., egg_info) before build deps are installed
-    include_dirs = ["necpp_src/src", "necpp_src/", "necpp_src/build/", "necpp_src/win32/", "necpp_src/src/eigen3"]
+    include_dirs = ["necpp_src/src", "necpp_src/", "necpp_src/build/", "necpp_src/win32/", "necpp_src/src/eigen"]
 
 necpp_module = Extension(
     "_PyNEC",
