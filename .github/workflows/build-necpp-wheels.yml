@@ -84,9 +84,18 @@ jobs:
           pattern: cibw-wheels-necpp-${{ matrix.os }}
           path: wheelhouse
           merge-multiple: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - name: Install wheel and run tests
+        # cibuildwheel produces one wheel per Python version (cp310-cp313).
+        # Install only the wheel matching the interpreter set up above,
+        # instead of globbing all ABIs (which pip rejects as incompatible).
+        shell: bash
         run: |
-          pip install wheelhouse/*.whl
+          PYTAG="cp$(python -c 'import sys;print(f"{sys.version_info.major}{sys.version_info.minor}")')"
+          pip install "$(ls wheelhouse/*-$PYTAG-*.whl | head -1)"
           pip install pytest
           python -m pytest necpp/tests/ -v
 
