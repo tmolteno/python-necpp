@@ -32,10 +32,10 @@ class TestNearField:
         assert nh is not None
 
     def test_electric_field_frequency(self, dipole_near_field):
-        """Frequency should be non-empty."""
+        """Frequency should be set (scalar, Hz)."""
         ne = dipole_near_field.get_near_field_pattern(0)
-        freqs = ne.get_frequency()
-        assert len(freqs) > 0
+        freq = ne.get_frequency()
+        assert freq > 0
 
     def test_electric_field_coordinates(self, dipole_near_field):
         """X, Y, Z coordinate arrays should be non-empty."""

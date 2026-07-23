@@ -59,11 +59,11 @@ class TestInputParameters:
     def test_frequency_matches(self, simple_dipole):
         """Returned frequency should match the FR card."""
         ai = simple_dipole.get_input_parameters(0)
-        freqs = ai.get_frequency()
+        # necpp returns the result's frequency as a scalar (Hz).
+        freq = ai.get_frequency()
 
-        assert len(freqs) > 0
         # FR card set 200 MHz with 50 MHz step, 3 frequencies
-        assert abs(freqs[0] - 200.0) < 1.0
+        assert abs(freq - 200.0e6) < 1.0e6
 
     def test_tag_and_segment(self, simple_dipole):
         """Tag and segment arrays should be non-empty."""

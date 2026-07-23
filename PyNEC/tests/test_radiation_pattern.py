@@ -73,11 +73,12 @@ class TestRadiationPattern:
         assert rp.get_e_phi() is not None
 
     def test_frequency(self, radpat_dipole):
-        """Frequency should be a non-empty array."""
+        """Frequency should be set (scalar, Hz)."""
         rp = radpat_dipole.get_radiation_pattern(0)
-        freqs = rp.get_frequency()
+        # necpp returns the result's frequency as a scalar.
+        freq = rp.get_frequency()
 
-        assert len(freqs) > 0
+        assert freq > 0
 
     def test_gain_max_is_finite(self, radpat_dipole):
         """Gain max should be finite and not NaN."""

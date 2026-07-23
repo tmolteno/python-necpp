@@ -29,8 +29,9 @@ class TestNormRxPattern:
 
     def test_frequency(self, rx_antenna):
         nrp = rx_antenna.get_norm_rx_pattern(0)
-        freqs = nrp.get_frequency()
-        assert len(freqs) > 0
+        # necpp returns the result's frequency as a scalar (Hz).
+        freq = nrp.get_frequency()
+        assert freq > 0
 
     def test_theta_phi_counts(self, rx_antenna):
         """N_theta and N_phi should be non-negative."""
@@ -53,9 +54,10 @@ class TestNormRxPattern:
         assert nrp.get_axial_ratio() is not None
 
     def test_segment_number(self, rx_antenna):
-        """Segment numbers should be non-empty."""
+        """Segment number should be set (scalar)."""
         nrp = rx_antenna.get_norm_rx_pattern(0)
-        assert len(nrp.get_segment_number()) > 0
+        # necpp returns the segment number as a scalar int.
+        assert nrp.get_segment_number() > 0
 
     def test_magnitude(self, rx_antenna):
         """Magnitude should be non-empty."""
