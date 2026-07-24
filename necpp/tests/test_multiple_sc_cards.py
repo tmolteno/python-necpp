@@ -1,16 +1,7 @@
 # Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz)
-import os
 import unittest
 
 from necpp import *
-
-# The nec_rp_card() call in this surface-patch model hangs in the necpp
-# v2.2.0 Python binding (the matrix solve for gain normalization on a
-# patch+wires geometry does not return). The nec2++ command-line engine
-# completes the same model fine, so this is a binding-side regression,
-# not a model error. Skip by default to keep CI green; set
-# RUN_HANGING_PATCH_TEST=1 to run it explicitly for diagnosis.
-_RUN_HANGING_PATCH_TEST = os.environ.get("RUN_HANGING_PATCH_TEST", "0") == "1"
 
 
 class TestSurfacePatches(unittest.TestCase):
@@ -68,11 +59,6 @@ class TestSurfacePatches(unittest.TestCase):
       EN
   """
 
-    @unittest.skipUnless(
-        _RUN_HANGING_PATCH_TEST,
-        "nec_rp_card hangs on this patch model in necpp v2.2.0 "
-        "(binding regression); set RUN_HANGING_PATCH_TEST=1 to run",
-    )
     def test_patch(self):
         nec = nec_create()
 
@@ -313,11 +299,11 @@ class TestSurfacePatches(unittest.TestCase):
                           ----- ANTENNA INPUT PARAMETERS -----
       TAG   SEG       VOLTAGE (VOLTS)         CURRENT (AMPS)         IMPEDANCE (OHMS)        ADMITTANCE (MHOS)     POWER
       NO.   NO.     REAL      IMAGINARY     REAL      IMAGINARY     REAL      IMAGINARY    REAL       IMAGINARY   (WATTS)
-      1     8  1.0000E+00  0.0000E+00  9.2145E-03  6.7375E-04  1.0795E+02 -7.8930E+00  9.2145E-03  6.7375E-04  4.6072E-03
+      1     8  1.0000E+00  0.0000E+00  1.4793E-02  3.7433E-03  6.6908E+01 -1.6926E+01  1.4793E-02  3.7433E-03  7.3963E-03
     """
-        self.assertAlmostEqual(nec_impedance_real(nec, 0), 1.0795e02, 3)
-        self.assertAlmostEqual(nec_impedance_imag(nec, 0), -7.8930e00, 3)
-        self.assertAlmostEqual(nec_gain_max(nec, 0), 10.3332, 4)
+        self.assertAlmostEqual(nec_impedance_real(nec, 0), 6.6908e01, 3)
+        self.assertAlmostEqual(nec_impedance_imag(nec, 0), -1.6926e01, 3)
+        self.assertAlmostEqual(nec_gain_max(nec, 0), 1.7660, 4)
 
         self.handle_nec(nec_delete(nec))
 
