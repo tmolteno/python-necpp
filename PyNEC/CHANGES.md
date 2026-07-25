@@ -1,4 +1,11 @@
 <!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
+### Version 2.2.6:
+
+* Add Python 3.14 wheel builds, drop Python 3.10
+  - Update CIBW_BUILD to cp311-* through cp314-*
+  - Bump requires-python to >=3.11
+  - Add Python 3.14 classifier
+
 ### Version 2.2.5:
 
 * Fix: Include Eigen headers and all source files in MANIFEST.in for sdist

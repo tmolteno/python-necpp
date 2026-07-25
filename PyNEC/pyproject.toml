@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PyNEC"
-version = "2.2.5"
+version = "2.2.6"
 description = "Python Antenna Simulation Module (nec2++) object-oriented interface"
 readme = "README.md"
 license = "GPL-3.0-only"
@@ -13,13 +13,14 @@ authors = [
     { name = "Tim Molteno", email = "tim@physics.otago.ac.nz" },
 ]
 keywords = ["nec2", "nec2++", "antenna", "electromagnetism", "radio"]
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 dependencies = ["numpy"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Topic :: Scientific/Engineering",
     "Topic :: Communications :: Ham Radio",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.14",
     "Intended Audience :: Science/Research",
 ]
 
