@@ -1,7 +1,7 @@
 <!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
 # Python NEC2++ Module
 
-This module wraps the C++ API for antenna simulation of nec2++. It is easier to work with, and more powerful than the C-style API wrapper. Works with Python 2.7 and 3+.
+This module wraps the C++ API for antenna simulation of nec2++. It is easier to work with, and more powerful than the C-style API wrapper. Requires Python 3.9+.
 
 
 ## Usage
@@ -77,7 +77,7 @@ Then do following:
     
 ## Install from PyPI
 
-    $ sudo pip install pynec
+    $ pip install PyNEC
     
 *Note: 'sudo' is not required in windows.*
 

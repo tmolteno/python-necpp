@@ -1,5 +1,12 @@
 <!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
-### Version 1.8.0:
+### Version 2.2.4:
+
+* Fix #XX: Auto-generate config.h in setup.py so pip install from sdist works
+  - setup.py now writes necpp_src/build/config.h with version from pyproject.toml
+  - No longer requires CMake to be run before pip install from source
+  - Applied to both PyNEC/setup.py and necpp/setup.py
+
+### Version 2.2.3:
 
 * Update necpp_src submodule to v2.1.1 — major engine upgrade
   - Eigen 3.4.0 replaces LAPACK (bundled in src/eigen3/, no external dependency)

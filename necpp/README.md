@@ -10,13 +10,10 @@ library can be used.
 
 Tim Molteno. tim@physics.otago.ac.nz
 
-## NEWS
+## News
 
-* Version 1.7.3 Includes Python3 support. Also some bug fixes and updating nec++ to the 
-  latest version.
-* Version 1.7.0.3 includes nec_medium_parameters(). You could simulate an antenna in seawater!
-* Version 1.7.0 includes support for getting elements of radiation patterns. At the moment
-  this is just through the function nec_get_gain().
+* Version 2.2.x  Latest releases including Eigen-based matrix solver and
+  modern Python packaging (pyproject.toml, uv support).
 
 
 ## Install
@@ -45,7 +42,7 @@ over a perfect ground.
 
     def handle_nec(result):
       if (result != 0):
-        print necpp.nec_error_message()
+        print(necpp.nec_error_message())
 
     def impedance(frequency, z0, height):
       
@@ -64,9 +61,9 @@ over a perfect ground.
       necpp.nec_delete(nec)
       return z
 
-    if (__name__ == 'main'):
+    if __name__ == "__main__":
       z = impedance(frequency = 34.5, z0 = 0.5, height = 4.0)
-      print "Impedance \t(%6.1f,%+6.1fI) Ohms" % (z.real, z.imag)
+      print("Impedance \t(%6.1f,%+6.1fI) Ohms" % (z.real, z.imag))
 
 ## More Information
       
