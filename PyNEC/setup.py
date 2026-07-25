@@ -24,7 +24,7 @@ BUILD_DIR = "necpp_src/build"
 os.makedirs(BUILD_DIR, exist_ok=True)
 
 # Try to read the version from pyproject.toml; fall back to a known default.
-_version = "2.2.4"
+_version = "2.2.5"
 try:
     import tomllib  # Python 3.11+
 except ImportError:

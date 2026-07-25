@@ -1,4 +1,11 @@
 <!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
+### Version 2.2.5:
+
+* Fix: Include Eigen headers and all source files in MANIFEST.in for sdist
+  - Add `graft necpp_src/src/eigen` to include bundled Eigen headers
+  - Use `recursive-include` to ensure all .h/.cpp/.h.in files are in sdist
+  - Fixes `fatal error: Eigen/Dense: No such file or directory` on pip install
+
 ### Version 2.2.4:
 
 * Fix #XX: Auto-generate config.h in setup.py so pip install from sdist works

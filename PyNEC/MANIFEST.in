@@ -1,8 +1,8 @@
 include LICENCE.txt
 
-include necpp_src/src/*.h
+recursive-include necpp_src/src *.h *.cpp *.h.in *.cxx
 
-include necpp_src/src/config.h.in
+graft necpp_src/src/eigen
 
 include example/*.py
 
