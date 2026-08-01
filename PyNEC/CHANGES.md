@@ -1,4 +1,14 @@
 <!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
+### Version 2.3.2:
+
+* Update necpp_src submodule to v2.3.2
+  ([upstream changelog](https://github.com/tmolteno/necpp/compare/v2.2.1...v2.3.2))
+  - v2.3.2: NE/NH near-field blank count defaults to 1 (NEC-2 Part 3 compliance)
+  - v2.3.2: Memory safety fixes — prevent duplicate close and invalid pattern reads
+  - v2.3.2: Fix uninitialized read for average-only radiation-pattern rows
+  - v2.3.1: Upgrade segment/patch counts to int64_t for large simulations
+  - v2.3.0: Fix flat-spiral helix (GH HL=0) degenerating to straight wire
+
 ### Version 2.2.6:
 
 * Add Python 3.14 wheel builds, drop Python 3.10
