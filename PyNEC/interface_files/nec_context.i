@@ -40,10 +40,12 @@ public:
   
   /****************** IMPEDANCE CHARACTERISTICS *********************/
   
-  /*! \brief Impedance: Real Part */
-  double get_impedance_real(int freq_index);
-  /*! \brief Impedance: Imaginary Part */
-  double get_impedance_imag(int freq_index);
+  /*! \brief Impedance: Real Part
+      \param feed_index Zero-based feed index within the frequency (default 0). */
+  double get_impedance_real(int freq_index, int feed_index = 0);
+  /*! \brief Impedance: Imaginary Part
+      \param feed_index Zero-based feed index within the frequency (default 0). */
+  double get_impedance_imag(int freq_index, int feed_index = 0);
         
         
   /*! Get the result antenna_input_parameters specified by index

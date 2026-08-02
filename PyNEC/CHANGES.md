@@ -1,4 +1,14 @@
 <!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
+### Version 2.3.4:
+
+* Update necpp_src submodule to v2.3.4
+  ([upstream changelog](https://github.com/tmolteno/necpp/compare/v2.3.2...v2.3.4))
+  - **Breaking:** `get_impedance_real/imag` now accept `feed_index` parameter
+    (`imp.back()` → `imp[0]`, correct for multi-feed setups)
+  - New: `nec_impedance_real_indexed/imag_indexed` C API for specific feeds
+  - Doxygen documentation for multi-feed access patterns
+  - v2.3.3: Fix GX solve and three-plane symmetry reflection
+
 ### Version 2.3.2:
 
 * Update necpp_src submodule to v2.3.2
