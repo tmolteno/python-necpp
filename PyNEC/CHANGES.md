@@ -1,4 +1,26 @@
 <!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
+### Version 2.4.0:
+
+* **Wheels are now built with the Python stable ABI (`cp311-abi3`)**: one
+  wheel per platform covers CPython 3.11 – 3.14 (and newer), instead of one
+  wheel per Python version.
+* **New Windows x64 wheels** (`cp311-abi3-win_amd64`), plus a new Intel macOS
+  wheel (`cp311-abi3-macosx_x86_64`) alongside the existing Linux x86_64 and
+  Apple Silicon wheels.
+* The bundled NEC2++ engine revision is now identified for every build: the
+  `necpp_src` submodule pin is named in the release notes, and the extension
+  embeds it as a `necpp_engine_sha=...` string (check with `strings`).
+* Source builds: SWIG >= 4.4.1 is now required (CI pins 4.5.1); PyNEC's
+  compiler flags (`-fPIC`, `-lstdc++`) are POSIX-only so MSVC builds work.
+* necpp_src is pinned at `d32ed8f` (necpp master, including the #138/#139
+  fixes from PR #140 — nec2diff negative-value comparison and the gshank
+  Sommerfeld convergence-floor revert).
+
+### Version 2.3.5:
+
+* Update necpp_src submodule for the Sommerfeld interpolation wire-order fix
+  (necpp #139) — see the [v2.3.5 GitHub release](https://github.com/tmolteno/python-necpp/releases/tag/v2.3.5).
+
 ### Version 2.3.4:
 
 * Update necpp_src submodule to v2.3.4

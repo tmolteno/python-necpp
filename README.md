@@ -14,9 +14,39 @@ Both are based on Tim Molteno (tim@physics.otago.ac.nz)'s code with major cleanu
 pip install PyNEC necpp
 ```
 
+Wheels are built with the Python stable ABI (**abi3**): a single wheel per
+platform covers CPython **3.11 – 3.14** and newer.
+
+| Platform | Wheel tag |
+|---|---|
+| Linux (x86_64, manylinux) | `cp311-abi3-manylinux_*` |
+| macOS (Apple Silicon) | `cp311-abi3-macosx_arm64` |
+| macOS (Intel) | `cp311-abi3-macosx_x86_64` |
+| Windows (x64) | `cp311-abi3-win_amd64` |
+
+Free-threaded CPython (`cp314t`) is not covered by the stable ABI — install
+from the sdist there (a full-API build is produced automatically).
+
+### Which NEC2++ engine is bundled?
+
+Every release pins the `necpp_src` git submodule to a specific
+[necpp](https://github.com/tmolteno/necpp) commit. Two places identify it:
+
+* the GitHub release notes and [PyNEC/CHANGES.md](PyNEC/CHANGES.md) name the
+  `necpp_src` commit for each release;
+* the compiled extension embeds it as `necpp_engine_sha=<commit>` — verify any
+  installed wheel with:
+
+  ```bash
+  strings "$(python -c 'import _PyNEC, pathlib; print(pathlib.Path(_PyNEC.__file__))')" | grep necpp_engine_sha
+  ```
+
 ## Build from Source
 
-Uses [uv](https://github.com/astral-sh/uv) for modern PEP 517 builds:
+Uses [uv](https://github.com/astral-sh/uv) for modern PEP 517 builds.
+Generating the wrappers requires **SWIG >= 4.4.1** (4.5.1 recommended — older
+SWIG cannot emit stable-ABI-compatible code); installing from a release
+sdist needs no SWIG at all.
 
 ```bash
 git clone --recursive https://github.com/tmolteno/python-necpp.git
