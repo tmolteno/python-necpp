@@ -25,7 +25,9 @@ class TestDipoleGain(unittest.TestCase):
     EN    
     '''
     geo.wire(0, 7, 0., 0., .75, 0., 0., 1.25, .001, 1.0, 1.0)
-    nec.geometry_complete(1)
+    # GE 0 (free space): this deck has no GN card, and since necpp 2.3.5 a
+    # ground connection without a ground model fails at simulate time.
+    nec.geometry_complete(0)
     nec.ex_card(0, 0, 4,0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0)
     nec.xq_card(0)
     nec.ld_card(0, 0, 4, 4, 10., 3.000E-09, 5.300E-11)
