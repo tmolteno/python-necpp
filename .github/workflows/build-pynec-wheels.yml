@@ -7,6 +7,12 @@ on:
     types:
       - published
 
+env:
+  # SWIG >= 4.4.1 is required for Py_LIMITED_API builds (heap types landed in
+  # 4.4.0, Py_LIMITED_API fixes in 4.4.1); 4.5.1 is the current release and is
+  # pinned so all four platforms generate identical wrappers.
+  SWIG_VERSION: "4.5.1"
+
 jobs:
   build_wheels:
     name: Build PyNEC wheels on ${{ matrix.os }}
@@ -14,52 +20,67 @@ jobs:
     permissions:
       contents: read
     strategy:
+      fail-fast: false
       matrix:
+        os: [linux, macos-arm, macos-x64, windows]
         include:
           - os: linux
             runs-on: ubuntu-latest
           - os: macos-arm
             runs-on: macos-latest
+          # Intel macOS: macos-13 and the macOS 14 x64 images are retired
+          # (2026-11-02); macos-15-intel is the current x64 label.
+          - os: macos-x64
+            runs-on: macos-15-intel
+          - os: windows
+            runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Install build dependencies (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y swig cmake
+      - name: Set up Python (SWIG tooling)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-      - name: Install build dependencies (macOS)
-        if: runner.os == 'macOS'
-        run: |
-          brew install swig cmake
-
-      - name: Configure necpp_src
+      - name: Install pinned SWIG
         shell: bash
-        run: |
-          cd necpp_src
-          cmake -B build -DCMAKE_BUILD_TYPE=Release
-          cmake --build build
+        run: python -m pip install "swig==$SWIG_VERSION"
 
+      # No CMake configure/build needed: setup.py writes necpp_src/build/
+      # config.h itself (same two macros as src/config.h.in).
       - name: Setup package directory and generate SWIG wrapper
         shell: bash
         run: |
           cd PyNEC
-          ln -s ../necpp_src .
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            # Git Bash symlink support for directories is unreliable; copy.
+            cp -r ../necpp_src .
+          else
+            ln -s ../necpp_src .
+          fi
           swig -Wall -c++ -python PyNEC.i
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v4.1.0
         env:
-          CIBW_BUILD: "cp311-* cp312-* cp313-* cp314-*"
+          # One cp311-abi3 wheel per platform (works on CPython 3.11+),
+          # instead of one wheel per Python version.
+          CIBW_BUILD: "cp311-*"
           CIBW_SKIP: "*-musllinux_*"
+          CIBW_ARCHS_WINDOWS: AMD64
           CIBW_BUILD_VERBOSITY: 1
         with:
           package-dir: PyNEC
           output-dir: wheelhouse
+
+      - name: Audit wheels against the stable ABI
+        shell: bash
+        run: |
+          python -m pip install abi3audit
+          abi3audit -sS wheelhouse/*.whl
 
       - uses: actions/upload-artifact@v4
         with:
@@ -67,18 +88,25 @@ jobs:
           path: ./wheelhouse/*.whl
 
   test:
-    name: Test PyNEC on ${{ matrix.os }}
+    name: Test PyNEC on ${{ matrix.os }} / py${{ matrix.python }}
     needs: [build_wheels, build_sdist]
     runs-on: ${{ matrix.runs-on }}
     permissions:
       contents: read
     strategy:
+      fail-fast: false
       matrix:
+        python: ["3.11", "3.14"]
+        os: [linux, macos-arm, macos-x64, windows]
         include:
           - os: linux
             runs-on: ubuntu-latest
           - os: macos-arm
             runs-on: macos-latest
+          - os: macos-x64
+            runs-on: macos-15-intel
+          - os: windows
+            runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -89,15 +117,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-      - name: Install wheel and run tests
-        # cibuildwheel produces one wheel per Python version (cp310-cp313).
-        # Install only the wheel matching the interpreter set up above,
-        # instead of globbing all ABIs (which pip rejects as incompatible).
+          python-version: ${{ matrix.python }}
+      - name: Install the abi3 wheel and run tests
+        # Exactly one cp311-abi3 wheel per platform: it must install and pass
+        # on every supported CPython (3.11 through 3.14) — this proves it.
+        # PyNEC's runtime dep numpy arrives with the wheel.
         shell: bash
         run: |
-          PYTAG="cp$(python -c 'import sys;print(f"{sys.version_info.major}{sys.version_info.minor}")')"
-          pip install "$(ls wheelhouse/*-$PYTAG-*.whl | head -1)"
+          pip install "$(ls wheelhouse/*-abi3-*.whl | head -1)"
           pip install pytest
           python -m pytest PyNEC/tests/ -v
 
@@ -111,16 +138,13 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install build dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y swig cmake
+      - name: Set up Python (SWIG tooling)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-      - name: Configure necpp_src
-        run: |
-          cd necpp_src
-          cmake -B build -DCMAKE_BUILD_TYPE=Release
-          cmake --build build
+      - name: Install pinned SWIG
+        run: python -m pip install "swig==$SWIG_VERSION"
 
       - name: Setup package directory and generate SWIG wrapper
         run: |
@@ -128,6 +152,7 @@ jobs:
           ln -s ../necpp_src .
           swig -Wall -c++ -python PyNEC.i
 
+      # The sdist ships the pre-generated wrapper, so end users never need SWIG.
       - name: Build sdist
         run: |
           cd PyNEC
