@@ -1,4 +1,16 @@
 <!-- Copyright (c) 2008-2026 Tim Molteno (tim@elec.ac.nz) -->
+### Version 2.4.1:
+
+* Update `necpp_src` submodule to **necpp v2.3.5** (`507341f`): the release
+  carries only docs/tests versus 2.4.0's pin — the PR #137/#141 Sommerfeld
+  near-ground regression deck (`testharness/data/sommerfeld_near_ground.nec`)
+  and CHANGELOG/version bump, **no `src/` changes**, so engine behaviour is
+  identical to 2.4.0. The point of this release is provenance: every build now
+  reports `necpp_engine_sha=507341f` (= engine tag v2.3.5).
+* Upstream, necpp **v2.3.5 was tagged and released** on 2026-11-23 and
+  **#138/#139 were closed** (2026-11-16) — both fixes have shipped since
+  2.3.5 of this package (see below).
+
 ### Version 2.4.0:
 
 * **Wheels are now built with the Python stable ABI (`cp311-abi3`)**: one

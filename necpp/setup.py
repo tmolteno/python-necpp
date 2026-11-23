@@ -49,7 +49,7 @@ def _engine_sha():
 
 
 # Try to read the version from pyproject.toml; fall back to a known default.
-_version = "2.4.0"
+_version = "2.4.1"
 try:
     import tomllib  # Python 3.11+
 except ImportError:
